@@ -1,0 +1,19 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+
+# Python cache
+.pytest_cache/
+
+# Large ML/data files
+*.pkl
+*.npz
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# VS Code temporary files
+tempCodeRunnerFile.py

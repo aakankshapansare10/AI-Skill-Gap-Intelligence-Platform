@@ -1,0 +1,301 @@
+skill,precision,recall,f1_score
+stress analysis,0.9873417721518988,0.9397590361445783,0.9629629629629629
+moderation,0.9367088607594937,0.9736842105263158,0.9548387096774194
+content writing,0.9367088607594937,0.7115384615384616,0.8087431693989071
+market research,0.9367088607594937,0.556390977443609,0.6981132075471698
+technical support,0.9230769230769231,0.32432432432432434,0.48
+technical leadership,1.0,0.28888888888888886,0.4482758620689655
+Sales,0.6447105788423154,0.3376894929430214,0.4432246998284734
+CSS,0.649164677804296,0.3196239717978848,0.4283464566929134
+Spring Boot,0.5321100917431193,0.35365853658536583,0.4249084249084249
+Java,0.7879858657243817,0.2840764331210191,0.41760299625468167
+software development life cycle,0.8333333333333334,0.26881720430107525,0.4065040650406504
+Recruitment,0.8089887640449438,0.254416961130742,0.3870967741935484
+Branch banking,0.8461538461538461,0.24719101123595505,0.3826086956521739
+channel sales,1.0,0.23157894736842105,0.37606837606837606
+root cause analysis,0.8666666666666667,0.2222222222222222,0.35374149659863946
+International Sales,0.8947368421052632,0.21794871794871795,0.35051546391752575
+Lead generation,1.0,0.21212121212121213,0.35
+Customer Service,0.7932203389830509,0.22413793103448276,0.34951456310679613
+Customer satisfaction,1.0,0.18666666666666668,0.3146067415730337
+software development,0.5566037735849056,0.2099644128113879,0.3049095607235142
+Machine Learning,0.7205882352941176,0.19291338582677164,0.30434782608695654
+SAP,0.7169811320754716,0.19250253292806485,0.3035143769968051
+International Voice Process,0.5915492957746479,0.1891891891891892,0.28668941979522183
+Business Development,0.6666666666666666,0.18226600985221675,0.2862669245647969
+Python,0.6678321678321678,0.1675438596491228,0.26788218793828894
+troubleshooting,0.8571428571428571,0.15789473684210525,0.26666666666666666
+Customer Support,0.6352941176470588,0.16167664670658682,0.2577565632458234
+Microservices,0.4426229508196721,0.16363636363636364,0.23893805309734514
+accounts payable,1.0,0.13529411764705881,0.23834196891191708
+application design,1.0,0.12422360248447205,0.22099447513812154
+Consulting,0.6323529411764706,0.1299093655589124,0.21553884711779447
+Accounting,0.5957446808510638,0.1076923076923077,0.18241042345276873
+Inside Sales,0.6842105263157895,0.1,0.174496644295302
+React,0.8,0.08135593220338982,0.1476923076923077
+Field Sales,0.45652173913043476,0.08641975308641975,0.1453287197231834
+Power BI,0.8461538461538461,0.07432432432432433,0.13664596273291926
+Project Management,0.7428571428571429,0.07149404216315307,0.13043478260869565
+Telesales,1.0,0.06086956521739131,0.11475409836065574
+Relationship,0.32,0.06808510638297872,0.11228070175438597
+Artificial Intelligence,0.7142857142857143,0.055248618784530384,0.10256410256410256
+Oracle,0.7777777777777778,0.05185185185185185,0.09722222222222222
+Architecture,0.42105263157894735,0.053691275167785234,0.09523809523809523
+Voice Process,0.358974358974359,0.04964539007092199,0.08722741433021806
+Development,0.25,0.04234527687296417,0.07242339832869081
+Data Analysis,0.6842105263157895,0.03571428571428571,0.06788511749347259
+C#,0.5555555555555556,0.033783783783783786,0.06369426751592357
+Training,0.6666666666666666,0.03319502074688797,0.06324110671936758
+Marketing,0.42105263157894735,0.03206412825651302,0.0595903165735568
+JavaScript,0.72,0.03035413153456998,0.05825242718446602
+Angular,0.8571428571428571,0.02586206896551724,0.0502092050209205
+Assistance,0.3,0.025,0.046153846153846156
+International Call Center,0.3333333333333333,0.022598870056497175,0.042328042328042326
+Management,0.32786885245901637,0.02072538860103627,0.03898635477582846
+English,1.0,0.018779342723004695,0.03686635944700461
+B2B Sales,1.0,0.018292682926829267,0.03592814371257485
+US Healthcare,1.0,0.015873015873015872,0.03125
+AWS,0.5555555555555556,0.013297872340425532,0.025974025974025976
+Senior,0.25,0.012345679012345678,0.023529411764705882
+Hiring,0.3333333333333333,0.011627906976744186,0.02247191011235955
+Talent Acquisition,1.0,0.008403361344537815,0.016666666666666666
+Life Insurance,1.0,0.007633587786259542,0.015151515151515152
+Node.js,1.0,0.007462686567164179,0.014814814814814815
+BPO,0.3333333333333333,0.007547169811320755,0.014760147601476014
+Telecalling,1.0,0.006711409395973154,0.013333333333333334
+International BPO,0.5,0.006711409395973154,0.013245033112582781
+SQL,0.5,0.006587615283267457,0.013003901170351105
+Lead Generation,1.0,0.003816793893129771,0.0076045627376425855
+Microsoft Azure,0.5,0.003472222222222222,0.006896551724137931
+Automation,0.3333333333333333,0.002386634844868735,0.004739336492890996
+Microsoft Excel,0.0,0.0,0.0
+team management,0.0,0.0,0.0
+application development,0.0,0.0,0.0
+Networking,0.0,0.0,0.0
+Troubleshooting,0.0,0.0,0.0
+Finance,0.0,0.0,0.0
+Computer science,0.0,0.0,0.0
+Hindi,0.0,0.0,0.0
+Compliance,0.0,0.0,0.0
+accounting,0.0,0.0,0.0
+Git,0.0,0.0,0.0
+Coding,0.0,0.0,0.0
+Data,0.0,0.0,0.0
+agile,0.0,0.0,0.0
+Google Cloud Platform,0.0,0.0,0.0
+Team Handling,0.0,0.0,0.0
+networking,0.0,0.0,0.0
+Linux,0.0,0.0,0.0
+ERP,0.0,0.0,0.0
+Healthcare,0.0,0.0,0.0
+screening,0.0,0.0,0.0
+Process,0.0,0.0,0.0
+AutoCAD,0.0,0.0,0.0
+Administration,0.0,0.0,0.0
+business analysis,0.0,0.0,0.0
+Cloud,0.0,0.0,0.0
+Procurement,0.0,0.0,0.0
+development methodologies,0.0,0.0,0.0
+Banking,0.0,0.0,0.0
+presentation skills,0.0,0.0,0.0
+hr generalist activities,0.0,0.0,0.0
+Docker,0.0,0.0,0.0
+Design,0.0,0.0,0.0
+B2C Sales,0.0,0.0,0.0
+Microsoft Office,0.0,0.0,0.0
+Sales And Marketing,0.0,0.0,0.0
+Engineering,0.0,0.0,0.0
+Apache Hive,0.0,0.0,0.0
+Backend,0.0,0.0,0.0
+risk management,0.0,0.0,0.0
+ci/cd,0.0,0.0,0.0
+Monitoring,0.0,0.0,0.0
+Calling,0.0,0.0,0.0
+Insurance Sales,0.0,0.0,0.0
+Data Analytics,0.0,0.0,0.0
+accounts receivable,0.0,0.0,0.0
+hibernate,0.0,0.0,0.0
+MySQL,0.0,0.0,0.0
+PostgreSQL,0.0,0.0,0.0
+automation testing,0.0,0.0,0.0
+Debugging,0.0,0.0,0.0
+Negotiation,0.0,0.0,0.0
+Manager Technology,0.0,0.0,0.0
+sap hana,0.0,0.0,0.0
+design principles,0.0,0.0,0.0
+documentation,0.0,0.0,0.0
+digital marketing,0.0,0.0,0.0
+Analytics,0.0,0.0,0.0
+microservices,0.0,0.0,0.0
+Blended Process,0.0,0.0,0.0
+B2B,0.0,0.0,0.0
+production,0.0,0.0,0.0
+erp,0.0,0.0,0.0
+Voice,0.0,0.0,0.0
+Cold Calling,0.0,0.0,0.0
+training,0.0,0.0,0.0
+devops,0.0,0.0,0.0
+Project,0.0,0.0,0.0
+GitHub,0.0,0.0,0.0
+Relationship management,0.0,0.0,0.0
+algorithms,0.0,0.0,0.0
+MIS,0.0,0.0,0.0
+financial analysis,0.0,0.0,0.0
+US Process,0.0,0.0,0.0
+Direct Sales,0.0,0.0,0.0
+Convincing Power,0.0,0.0,0.0
+Billing,0.0,0.0,0.0
+joining formalities,0.0,0.0,0.0
+TDS,0.0,0.0,0.0
+program management,0.0,0.0,0.0
+jsp,0.0,0.0,0.0
+API,0.0,0.0,0.0
+Software,0.0,0.0,0.0
+Usage,0.0,0.0,0.0
+operations management,0.0,0.0,0.0
+Research,0.0,0.0,0.0
+Tally,0.0,0.0,0.0
+spring boot,0.0,0.0,0.0
+Continuous improvement,0.0,0.0,0.0
+Handling,0.0,0.0,0.0
+Client Acquisition,0.0,0.0,0.0
+Production,0.0,0.0,0.0
+Inbound Process,0.0,0.0,0.0
+Gst,0.0,0.0,0.0
+Voice Support,0.0,0.0,0.0
+data warehousing,0.0,0.0,0.0
+Technical,0.0,0.0,0.0
+Communication,0.0,0.0,0.0
+service operations,0.0,0.0,0.0
+data modeling,0.0,0.0,0.0
+Taxation,0.0,0.0,0.0
+debugging,0.0,0.0,0.0
+performance tuning,0.0,0.0,0.0
+Team Management,0.0,0.0,0.0
+Social media,0.0,0.0,0.0
+Retail,0.0,0.0,0.0
+Bpo Voice,0.0,0.0,0.0
+Documentation,0.0,0.0,0.0
+Supply chain,0.0,0.0,0.0
+manual testing,0.0,0.0,0.0
+Planning,0.0,0.0,0.0
+Agile,0.0,0.0,0.0
+Natural Language Processing,0.0,0.0,0.0
+Customer Care,0.0,0.0,0.0
+Leadership,0.0,0.0,0.0
+Maintenance,0.0,0.0,0.0
+recruitment,0.0,0.0,0.0
+Hospitality,0.0,0.0,0.0
+SEO,0.0,0.0,0.0
+Selenium,0.0,0.0,0.0
+Spring,0.0,0.0,0.0
+Net,0.0,0.0,0.0
+Interpersonal skills,0.0,0.0,0.0
+dbms,0.0,0.0,0.0
+Office,0.0,0.0,0.0
+Bpo Customer Service,0.0,0.0,0.0
+Analysis,0.0,0.0,0.0
+Acquisition,0.0,0.0,0.0
+Auditing,0.0,0.0,0.0
+Reconciliation,0.0,0.0,0.0
+Generation,0.0,0.0,0.0
+Front end,0.0,0.0,0.0
+etl,0.0,0.0,0.0
+Teaching,0.0,0.0,0.0
+Jenkins,0.0,0.0,0.0
+Payroll,0.0,0.0,0.0
+TypeScript,0.0,0.0,0.0
+Sales management,0.0,0.0,0.0
+quality control,0.0,0.0,0.0
+Target Achievement,0.0,0.0,0.0
+spring,0.0,0.0,0.0
+Change management,0.0,0.0,0.0
+Corporate,0.0,0.0,0.0
+sap s hana,0.0,0.0,0.0
+Data management,0.0,0.0,0.0
+Manager Quality Assurance,0.0,0.0,0.0
+sap abap,0.0,0.0,0.0
+Team management,0.0,0.0,0.0
+Channel Sales,0.0,0.0,0.0
+Sourcing,0.0,0.0,0.0
+Fluent English,0.0,0.0,0.0
+Non Voice Process,0.0,0.0,0.0
+Apache Spark,0.0,0.0,0.0
+Scheduling,0.0,0.0,0.0
+salesforce,0.0,0.0,0.0
+vendor management,0.0,0.0,0.0
+retail sales,0.0,0.0,0.0
+Software testing,0.0,0.0,0.0
+Product management,0.0,0.0,0.0
+Reporting,0.0,0.0,0.0
+Hibernate,0.0,0.0,0.0
+Budgeting,0.0,0.0,0.0
+Hadoop,0.0,0.0,0.0
+Full Stack,0.0,0.0,0.0
+End To End Recruitment,0.0,0.0,0.0
+Digital Marketing,0.0,0.0,0.0
+data management,0.0,0.0,0.0
+HR,0.0,0.0,0.0
+Tableau,0.0,0.0,0.0
+Focus,0.0,0.0,0.0
+teaching,0.0,0.0,0.0
+corporate sales,0.0,0.0,0.0
+Quality,0.0,0.0,0.0
+distribution,0.0,0.0,0.0
+Tally ERP,0.0,0.0,0.0
+Insurance,0.0,0.0,0.0
+Coordination,0.0,0.0,0.0
+Process improvement,0.0,0.0,0.0
+Inbound Calls,0.0,0.0,0.0
+International,0.0,0.0,0.0
+Cross Selling,0.0,0.0,0.0
+microsoft,0.0,0.0,0.0
+Boot,0.0,0.0,0.0
+Outbound Sales,0.0,0.0,0.0
+sap sd,0.0,0.0,0.0
+auditing,0.0,0.0,0.0
+Assurance,0.0,0.0,0.0
+jquery,0.0,0.0,0.0
+non voice process,0.0,0.0,0.0
+hrsd,0.0,0.0,0.0
+Risk management,0.0,0.0,0.0
+JIRA,0.0,0.0,0.0
+regression testing,0.0,0.0,0.0
+Field,0.0,0.0,0.0
+Relationship building,0.0,0.0,0.0
+Outbound,0.0,0.0,0.0
+Data Science,0.0,0.0,0.0
+Inbound Voice Process,0.0,0.0,0.0
+Agency Channel,0.0,0.0,0.0
+Net Core,0.0,0.0,0.0
+ETL,0.0,0.0,0.0
+HR Operations,0.0,0.0,0.0
+Scrum,0.0,0.0,0.0
+Chat Support,0.0,0.0,0.0
+stakeholder management,0.0,0.0,0.0
+Performance tuning,0.0,0.0,0.0
+Stakeholder management,0.0,0.0,0.0
+Financial services,0.0,0.0,0.0
+Customer Handling,0.0,0.0,0.0
+Bfsi Sales,0.0,0.0,0.0
+Devops,0.0,0.0,0.0
+quality assurance,0.0,0.0,0.0
+Hrsd,0.0,0.0,0.0
+Outbound Calling,0.0,0.0,0.0
+autocad,0.0,0.0,0.0
+sap abap development,0.0,0.0,0.0
+CRM,0.0,0.0,0.0
+customer relationship,0.0,0.0,0.0
+supply chain,0.0,0.0,0.0
+Excellent Communication In English,0.0,0.0,0.0
+REST API,0.0,0.0,0.0
+C++,0.0,0.0,0.0
+Analytical,0.0,0.0,0.0
+software testing,0.0,0.0,0.0
+Kubernetes,0.0,0.0,0.0
+oracle,0.0,0.0,0.0
+Operations,0.0,0.0,0.0
+web services,0.0,0.0,0.0
+continuous integration,0.0,0.0,0.0
+HTML,0.0,0.0,0.0
+Loans,0.0,0.0,0.0
