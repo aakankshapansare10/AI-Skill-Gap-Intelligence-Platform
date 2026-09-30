@@ -1,0 +1,36 @@
+skill_id,skill_name,reason
+8,1 Production Planning,numeric_or_list_noise
+9,1 Talent Acquisition,numeric_or_list_noise
+468,ACCOUNTS,generic
+3291,Assistant,generic
+4151,BANK,generic
+4579,Bangalore,generic
+6190,CHENNAI,location
+7242,Certifications,generic
+9173,Core,generic
+11096,Delhi,location
+11349,Designing,generic
+12235,Dynamic,generic
+14079,Execution,generic
+14471,FOCUS,generic
+17227,Gurgaon,location
+18421,Hyderabad,location
+21438,Kolkata,location
+21858,Large,generic
+22018,Leads,generic
+22517,Local,generic
+24544,Microsoft,generic
+25193,Mumbai,location
+25549,Naukri,generic
+28033,Part,generic
+29013,Policies,generic
+30636,Pune,location
+32320,Resolve,generic
+32638,Review,generic
+33041,SALES MANAGER,generic
+34308,Sales Executive,generic
+38150,Tasks,generic
+39505,Travel,generic
+52431,noida,location
+53554,platform,generic
+56924,strategic,generic
