@@ -1,0 +1,107 @@
+skill_id,skill_name,reason
+123,2Nd Class Boiler,description_phrase
+132,2nd Class license,description_phrase
+133,2nd hand cars,description_phrase
+225,3Rd Party Collection,description_phrase
+1845,Activities,generic
+2041,Advanced Excel,duplicate_canonical_skill
+2048,Advanced MS Excel,duplicate_canonical_skill
+2528,Analysis,generic
+2896,Application,generic
+4700,Basic Excel,duplicate_canonical_skill
+5919,C,invalid_short_skill
+7346,Chartered Accountant with 1st time passes desirable,description_phrase
+7950,Cloud Azure,duplicate_canonical_skill
+8607,Computer,generic
+8630,Computer Science,generic
+9701,Cross,generic
+10366,DOCUMENTATION,generic
+11054,Deeplearning,duplicate_canonical_skill
+12567,ENGLISH,generic
+12917,Education,generic
+14005,Excel Macros,duplicate_canonical_skill
+14013,Excel Vba,duplicate_canonical_skill
+14021,Excellent Communication,generic
+14023,Excellent Communication Skills,description_phrase
+14024,Excellent Communication Skills in English,description_phrase
+14027,Excellent Coms Skills,description_phrase
+14034,Excellent Negotiation Skills,description_phrase
+14035,Excellent Technical Skills,description_phrase
+14669,Familiar With Excel,description_phrase
+14670,Familiar with RESCO and EPC bidding models,description_phrase
+14671,Familiar with rotor balancing,description_phrase
+14672,Familiar with standard interfaces,description_phrase
+15040,Financial,generic
+15936,Functional,generic
+16172,GOOD COMMUNICATION SKILLS IS MUST,description_phrase
+16780,Good Comm Skills,description_phrase
+16781,Good Communication,generic
+16785,Good Communication Skills,description_phrase
+16787,Good Communication Skills Undergraduate,description_phrase
+16796,Good Convincing Skills,description_phrase
+16811,Good Typing Skills,description_phrase
+16825,Good communication skills in local languages,description_phrase
+16827,Good communications skills,description_phrase
+16837,Good listening skills,description_phrase
+16840,Good negotiation skills,description_phrase
+16841,Good organizational skills,description_phrase
+16852,Good writing skills,description_phrase
+19338,Identify,generic
+19705,Industry,generic
+21047,Job Description,generic
+21989,Leadership,generic
+22782,MBA Pass out,description_phrase
+23121,MS - Excel,duplicate_canonical_skill
+24551,Microsoft Azure,duplicate_canonical_skill
+24583,Microsoft Excel,duplicate_canonical_skill
+24611,Microsoft SQL,duplicate_canonical_skill
+25091,Ms Azure,duplicate_canonical_skill
+25425,NLP models,duplicate_canonical_skill
+25535,Native Azure,duplicate_canonical_skill
+25545,Natural Language Processing,duplicate_canonical_skill
+25576,Needs strong technical skills for handling equipment,description_phrase
+25948,Node.js,duplicate_canonical_skill
+28794,Planning,generic
+29192,Power BI,duplicate_canonical_skill
+29668,Problem,generic
+30170,Proficiency in CRM & Sales tools,description_phrase
+30171,Proficiency in Excel & data-driven management,description_phrase
+30172,Proficiency in Figma,description_phrase
+30173,Proficiency in HTML,description_phrase
+30174,Proficiency in HVAC design principles,description_phrase
+30175,Proficiency in Inventory Management,description_phrase
+30177,Proficiency in MS Office,description_phrase
+30178,Proficiency in MS Office & Excel,description_phrase
+30179,Proficiency in MS Office and email handling,description_phrase
+30181,Proficiency in SAP,description_phrase
+30182,Proficiency in data analysis,description_phrase
+30183,Proficiency in design tools such as Figma,description_phrase
+30184,Proficiency in financial and statutory reporting,description_phrase
+30185,Proficiency in handling emergency cases,description_phrase
+30958,Qualification,generic
+32252,Requirements,generic
+33936,SQL,duplicate_canonical_skill
+34799,Schedule,generic
+34864,Science,generic
+36191,Software,generic
+37224,Strong Analytical Skills,description_phrase
+37228,Strong Communication Skills,description_phrase
+37231,Strong Interpersonal Skills,description_phrase
+37234,Strong Negotiation Skills,description_phrase
+37986,TRAINING,generic
+38259,Team,generic
+38357,Teams,generic
+38391,Technical,generic
+38587,Technology,generic
+39931,US 3rd party collection,description_phrase
+40872,Very Good Communication Skills,description_phrase
+42347,adherence,generic
+42785,and campaign management. Proficiency in MS Office,description_phrase
+42865,and negotiation skills. Proficiency in MS Office,description_phrase
+46643,design & creativity. Proficiency in CoralDRAW,description_phrase
+46732,develop,generic
+47852,excellent communication skills in english & ka,description_phrase
+48841,good written skills,description_phrase
+54140,proficiency in excel formulas,description_phrase
+54915,requires strong sales skills,description_phrase
+56781,standards,generic

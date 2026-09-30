@@ -1,0 +1,15 @@
+NLP V4 VALIDATION SUMMARY
+============================================================
+
+Records: 430,349
+Unique jobs: 21,025
+Unique skills: 18,264
+Duplicate pairs: 0
+Minimum skills/job: 1
+Maximum skills/job: 237
+Average skills/job: 20.47
+Median skills/job: 14
+Short skill records: 2,804
+BE Degree occurrences: 6
+Zero-skill jobs: 6
+Jobs with >100 skills: 474

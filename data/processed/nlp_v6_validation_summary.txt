@@ -1,0 +1,137 @@
+NLP V6 VALIDATION SUMMARY
+======================================================================
+Total records: 389,733
+Unique jobs: 21,006
+Unique skills: 18,498
+Duplicate pairs: 0
+Min skills/job: 1
+Max skills/job: 216
+Average skills/job: 18.55
+Median skills/job: 12
+Jobs >100 skills: 415
+Short skill records <=3 chars: 8,805
+Zero-skill jobs: 25
+
+TOP 100 SKILLS
+1. Strong: 5,219
+2. Data: 2,571
+3. DESIGN: 2,426
+4. Maintain: 1,965
+5. Hiring: 1,671
+6. ProFile: 1,603
+7. High: 1,513
+8. CLOUD: 1,295
+9. Computer Science: 1,271
+10. Problem: 1,200
+11. Cross: 1,103
+12. TESTING: 1,101
+13. year: 1,074
+14. stakeholders: 1,055
+15. Delivery: 1,052
+16. HR: 1,048
+17. written: 1,013
+18. Insurance: 997
+19. International: 974
+20. Complex: 919
+21. Join: 909
+22. targets: 898
+23. TECH: 896
+24. Automation: 894
+25. SQL: 862
+26. INTEGRATION: 858
+27. Security: 824
+28. Python: 824
+29. equivalent: 823
+30. Business Development: 823
+31. Problem-Solving: 822
+32. Java: 821
+33. experienced: 815
+34. Control: 811
+35. VOICE: 802
+36. Architecture: 791
+37. Post: 788
+38. Digital: 747
+39. AGILE: 737
+40. code: 733
+41. AWS: 718
+42. Customer Service: 712
+43. Cross-functional: 711
+44. SAP: 710
+45. Production: 700
+46. BEST PRACTICES: 698
+47. Test: 681
+48. Naukri: 635
+49. Frameworks: 633
+50. Organization: 621
+51. Programming: 618
+52. Resolve: 611
+53. Improvement: 602
+54. Collaboration: 599
+55. life: 594
+56. Analytics: 583
+57. DATABASE: 569
+58. Bangalore: 568
+59. plans: 561
+60. Area: 558
+61. SALES MANAGER: 554
+62. Leads: 550
+63. Microsoft: 546
+64. RECORDS: 529
+65. Designing: 528
+66. Plan: 526
+67. Enterprise: 525
+68. Benefits: 524
+69. methodologies: 524
+70. prior: 524
+71. Large: 523
+72. HOME: 523
+73. Concepts: 520
+74. Infrastructure: 516
+75. Direct: 516
+76. strategic: 516
+77. Selling: 515
+78. Software Development: 514
+79. API: 513
+80. Engagement: 511
+81. Make: 510
+82. NETWORK: 506
+83. Stack: 498
+84. Report: 496
+85. Manufacturing: 495
+86. Solution: 494
+87. Generation: 493
+88. Risk: 492
+89. APIs: 489
+90. Site: 489
+91. Regulations: 481
+92. Scalable: 480
+93. Power: 480
+94. Advantage: 476
+95. Processing: 473
+96. staff: 472
+97. Coordination: 472
+98. RELATIONSHIP MANAGER: 472
+99. ACCOUNT: 470
+100. Excellent Communication Skills: 469
+
+TECHNICAL SKILL CHECK
+Python: 824
+SQL: 862
+Java: 821
+JavaScript: 406
+HTML: 177
+CSS: 189
+AWS: 718
+Azure: 0
+Docker: 252
+Kubernetes: 269
+Machine Learning: 187
+Deep Learning: 50
+NLP: 0
+React: 370
+Angular: 286
+Node.js: 132
+Power BI: 161
+Tableau: 133
+Excel: 0
+Git: 0

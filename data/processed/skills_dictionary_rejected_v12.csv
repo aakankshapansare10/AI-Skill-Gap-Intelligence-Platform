@@ -1,0 +1,104 @@
+skill_id,skill_name,reason
+90,24/7,numeric_or_personal_information
+91,247.ai,numeric_or_personal_information
+93,24X7,numeric_or_personal_information
+1923,Administration,generic
+1947,Administrator,job_role
+2543,Analytical,generic
+4152,BANKING,generic
+4219,BEST PRACTICES,generic
+4692,Basic,generic
+6267,CLOUD,generic
+6612,CV,invalid_short_skill
+6715,Call,generic
+6753,Calls,generic
+7238,Certification,generic
+7694,Clarity,generic
+7928,Closely working with Variable Agency Partners,description_phrase
+9713,Cross Selling,generic
+10515,Data,generic
+10718,Data analysisBusiness analyticsAnalyticalSchedulingData AnalystData analyticsBusiness intelligenceCustomer engagementOperationsMonitorin,sentence_or_description
+12442,EDA,invalid_short_skill
+14022,Excellent Communication In English,description_phrase
+14025,Excellent Communication in Telugu,description_phrase
+14042,Excellent communication & interpersonal skills,description_phrase
+14044,Excellent communication and interpersonal skills,description_phrase
+14045,Excellent communication and multitasking abilities,description_phrase
+14046,Excellent communication and writing skills,description_phrase
+14047,Excellent communication in English/ Hindi,description_phrase
+14048,Excellent communication in Hindi,description_phrase
+14426,FINANCE,generic
+14503,FRESHER,generic
+14505,FRESHERS,generic
+16170,GO,invalid_short_skill
+16174,GOOD KNOWLEDGE,description_phrase
+16655,Global,generic
+16782,Good Communication Excellent Food Presentation,description_phrase
+16783,Good Communication In English,description_phrase
+16784,Good Communication Skill,description_phrase
+16788,Good Communication and Analytical skills,description_phrase
+16790,Good Communication in English and Kannada,description_phrase
+16802,Good Knowledge about plastic molding part inspection,description_phrase
+16817,Good communication & documentation skills,description_phrase
+16819,Good communication and negotiation skills,description_phrase
+17126,Growth,generic
+18785,INTEGRATION,generic
+20040,Insurance,generic
+20386,Interpersonal,generic
+23718,Market,generic
+24952,Monitor,generic
+24965,Monitoring,generic
+25216,Must be having laptop and wifi connection,description_phrase
+25546,Natural Language Understanding,duplicate_canonical_skill
+27487,PERT/CPM will be added advantage,description_phrase
+28042,Part Time,generic
+29656,ProFile,generic
+29685,Problem-Solving,generic
+30053,Production,generic
+30541,Proven leadership and team-handling skills. Strong communication,description_phrase
+30555,Providing,generic
+30587,Public,generic
+31277,RECRUITER,job_role
+31287,REPORTS,generic
+32182,Reporting,generic
+33541,SAS,invalid_short_skill
+33670,SENIOR MANAGER,job_role
+37181,Strategist,generic
+37226,Strong Communication & Negitiation,description_phrase
+37227,Strong Communication & Presentation,description_phrase
+37244,Strong communication,description_phrase
+37245,Strong communication & customer service,description_phrase
+37246,Strong communication & negotiation skills,description_phrase
+37247,Strong communication & personality,description_phrase
+37248,Strong communication and interpersonal skills,description_phrase
+37250,Strong communication and negotiation skills,description_phrase
+37251,Strong communication and presentation abilities,description_phrase
+37253,Strong communication skill,description_phrase
+37267,Strong knowledge,description_phrase
+37284,Strong knowledge on annotation tools,description_phrase
+37285,Strong knowledge sales,description_phrase
+37859,TECH,generic
+37873,TESTING,generic
+38946,The candidate should be disciplined,description_phrase
+40298,Upselling,generic
+41934,Working with external agencies,description_phrase
+41935,Working with other staff members,description_phrase
+41969,Written Communication,generic
+42363,administrative,generic
+42792,and confidence. They must be polite,description_phrase
+42811,and digital marketing tools. Strong communication,description_phrase
+42842,and integrity. Excellent communication,description_phrase
+45194,code,generic
+46737,developing,generic
+47729,equivalent,generic
+47850,excellent communication in English with presentable,description_phrase
+48572,full time,generic
+48831,good communication english,description_phrase
+48833,good communication skils,description_phrase
+49650,implement,generic
+50550,key skills include strong communication,description_phrase
+51187,maintaining,generic
+52222,need good communication skill in hindi,description_phrase
+53791,prepare,generic
+56238,similar,generic
+58627,vouchers. Good communication,description_phrase

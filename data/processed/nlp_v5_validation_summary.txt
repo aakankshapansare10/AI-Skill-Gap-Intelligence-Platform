@@ -1,0 +1,250 @@
+NLP V5 VALIDATION REPORT
+======================================================================
+
+Total records: 395,568
+Unique jobs: 21,015
+Unique skills: 18,102
+Duplicate pairs: 0
+Min skills/job: 1
+Max skills/job: 225
+Average skills/job: 18.82
+Median skills/job: 12
+Zero-skill jobs: 16
+
+TOP 100 SKILLS
+----------------------------------------------------------------------
+skill_name
+skills                     5597
+Team                       3777
+Management                 3572
+Data                       2452
+DESIGN                     2378
+manage                     2106
+Teams                      1911
+Systems                    1706
+Time                       1565
+ProFile                    1556
+Science                    1517
+PROJECT                    1500
+Shift                      1324
+Compliance                 1317
+Computer Science           1248
+Marketing                  1220
+CLOUD                      1169
+Financial                  1140
+clients                    1079
+FRESHERS                   1070
+System                     1060
+Good Communication         1060
+TESTING                    1032
+ENGLISH                    1029
+TRAINING                   1022
+standards                  1003
+HR                          997
+Certification               902
+Excellent Communication     884
+Automation                  844
+Reporting                   833
+Business Development        806
+Problem-Solving             805
+INTEGRATION                 796
+Java                        792
+Security                    785
+SQL                         785
+Market                      774
+Control                     767
+Global                      761
+Python                      761
+full time                   754
+Monitor                     753
+Digital                     727
+Architecture                721
+Cross-functional            711
+VOICE                       711
+maintaining                 709
+Public                      709
+Providing                   699
+prepare                     697
+AGILE                       690
+SAP                         686
+Call                        682
+Growth                      678
+code                        672
+Administration              665
+Interpersonal               655
+Execution                   653
+BANK                        652
+Production                  649
+Test                        647
+masters                     645
+AWS                         641
+Basic                       640
+Customer Service            635
+Clarity                     627
+Functional                  621
+Monitoring                  621
+Learning                    616
+Dynamic                     613
+Travel                      610
+ACCOUNTING                  609
+Resolve                     608
+similar                     604
+Programming                 598
+Health                      595
+Part                        595
+MAINTENANCE                 591
+Review                      579
+Local                       577
+Frameworks                  575
+ACCOUNTS                    575
+RESEARCH                    575
+Collaboration               569
+TECH                        563
+Core                        562
+FOCUS                       558
+platform                    556
+Microsoft                   545
+Procedures                  544
+Policies                    544
+DATABASE                    541
+Analytics                   539
+Tasks                       535
+Sales Executive             535
+BEST PRACTICES              534
+Strategy                    533
+Certifications              533
+FRESHER                     528
+
+SHORT SKILLS
+----------------------------------------------------------------------
+skill_name
+HR     997
+SQL    785
+SAP    686
+AWS    641
+API    484
+CRM    452
+CV     319
+ERP    314
+QA     303
+UI     223
+BI     216
+ETL    183
+C#     181
+CSS    167
+SEO    122
+3D     118
+C++    109
+UX      97
+CAD     89
+XML     65
+PHP     64
+HCM     61
+IOS     59
+IAM     57
+EC2     49
+2D      47
+ROI     45
+DNS     45
+PLC     44
+L&D     39
+B.E     39
+KPI     39
+F&B     37
+VPN     32
+VBA     32
+DB2     29
+ATS     29
+M.e     29
+SAS     26
+PCB     24
+TCP     22
+SDK     22
+SEM     21
+CPU     19
+SSL     19
+Mac     19
+CAE     18
+RF      15
+ELT     15
+GPU     13
+A+      13
+VM      13
+O&M     13
+CAM     11
+ES6     11
+EDA     11
+5G      11
+F&O     10
+I/O      9
+M&A      9
+P&c      8
+RAM      7
+GA4      6
+4G       5
+UDP      5
+SSH      5
+A/R      4
+S&P      4
+n8n      4
+I&C      3
+C&B      3
+T&D      3
+F&F      2
+HL7      2
+B.A      2
+T&E      1
+A/P      1
+E/M      1
+X++      1
+
+SUSPICIOUS TERMS
+----------------------------------------------------------------------
+PRESENT: skills = 5,597
+PRESENT: Team = 3,777
+PRESENT: Management = 3,572
+PRESENT: Data = 2,452
+PRESENT: DESIGN = 2,378
+PRESENT: manage = 2,106
+PRESENT: Teams = 1,911
+PRESENT: Systems = 1,706
+PRESENT: Time = 1,565
+PRESENT: Science = 1,517
+PRESENT: PROJECT = 1,500
+PRESENT: Shift = 1,324
+PRESENT: Compliance = 1,317
+PRESENT: Computer Science = 1,248
+PRESENT: Marketing = 1,220
+PRESENT: CLOUD = 1,169
+PRESENT: Financial = 1,140
+PRESENT: clients = 1,079
+PRESENT: FRESHERS = 1,070
+PRESENT: System = 1,060
+PRESENT: Good Communication = 1,060
+PRESENT: TESTING = 1,032
+PRESENT: ENGLISH = 1,029
+PRESENT: TRAINING = 1,022
+PRESENT: standards = 1,003
+PRESENT: Certification = 902
+PRESENT: Excellent Communication = 884
+PRESENT: Automation = 844
+ABSENT: Process
+ABSENT: Business
+ABSENT: Customer
+ABSENT: Technical
+ABSENT: Technology
+ABSENT: Software
+ABSENT: Application
+ABSENT: Development
+ABSENT: Develop
+ABSENT: Requirements
+ABSENT: Planning
+ABSENT: Documentation
+ABSENT: Leadership
+ABSENT: Relationship
+ABSENT: Service
+ABSENT: Industry
+ABSENT: Field
+ABSENT: Experience
+ABSENT: Education
+ABSENT: Qualification
