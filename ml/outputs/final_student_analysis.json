@@ -1,0 +1,414 @@
+{
+    "student_profile": {
+        "total_skills": 72,
+        "skills": [
+            "Ai Platform",
+            "Analytical Thinking",
+            "and problem-solving skills",
+            "Attention To Detail",
+            "automated",
+            "B.Sc",
+            "Business Insights",
+            "C++",
+            "Cleaning",
+            "Commerce",
+            "Customer Analytics",
+            "Data Analysis",
+            "Data Analytics",
+            "Data Preprocessing",
+            "Data Science",
+            "Data Scientist",
+            "Data Warehouse",
+            "Data Warehousing",
+            "Databases",
+            "Decision-Making",
+            "E-Commerce",
+            "ETL",
+            "Evaluation",
+            "Excel",
+            "Extraction",
+            "Feature Engineering",
+            "FOUNDATION",
+            "GenAI",
+            "GitHub",
+            "Google Analytics",
+            "Hadoop",
+            "Internship",
+            "labeling",
+            "Languages Hindi",
+            "LinkedIn",
+            "machine learning models",
+            "Maharashtra",
+            "meta",
+            "MySQL",
+            "NLP",
+            "NumPy",
+            "Pandas",
+            "passionate",
+            "Pipeline",
+            "PostgreSQL",
+            "Power BI dashboards",
+            "prices",
+            "Pricing Analytics",
+            "Problem Solving",
+            "pursuing",
+            "PYSPARK",
+            "Python",
+            "Quick Learner",
+            "recommendations",
+            "RESEARCH",
+            "Resumes",
+            "Sales Data",
+            "Scikit-learn",
+            "Simulation",
+            "skilled",
+            "Solve",
+            "SQL",
+            "Star Schema",
+            "Statistics",
+            "Streamlit",
+            "Team & Collaboration",
+            "Team Collaboration",
+            "TEAMWORK",
+            "Technical Skills",
+            "university",
+            "Visualization",
+            "XGBoost"
+        ]
+    },
+    "overall_analysis": {
+        "jobs_analyzed": 70,
+        "best_job_match_percentage": 100.0,
+        "average_job_match_percentage": 28.51,
+        "average_skill_gap_percentage": 71.49
+    },
+    "top_job_recommendations": [
+        {
+            "rank": 1,
+            "job_id": "11025502500",
+            "job_title": "Python-Data Analyst-BF",
+            "matching_skill_count": 5,
+            "job_match_percentage": 100.0,
+            "skill_gap_percentage": 0.0,
+            "matching_skills": "data analysis | data science | python | sql | statistics",
+            "missing_skills": "nan"
+        },
+        {
+            "rank": 2,
+            "job_id": "11025011046",
+            "job_title": "JR. Data Analyst",
+            "matching_skill_count": 1,
+            "job_match_percentage": 100.0,
+            "skill_gap_percentage": 0.0,
+            "matching_skills": "data analysis",
+            "missing_skills": "nan"
+        },
+        {
+            "rank": 3,
+            "job_id": "31025908739",
+            "job_title": "Senior Data Analyst",
+            "matching_skill_count": 1,
+            "job_match_percentage": 100.0,
+            "skill_gap_percentage": 0.0,
+            "matching_skills": "data analysis",
+            "missing_skills": "nan"
+        },
+        {
+            "rank": 4,
+            "job_id": "11025501124",
+            "job_title": "Analyst - Data Analytics",
+            "matching_skill_count": 4,
+            "job_match_percentage": 80.0,
+            "skill_gap_percentage": 20.0,
+            "matching_skills": "data analysis | python | sql | statistics",
+            "missing_skills": "mathematics"
+        },
+        {
+            "rank": 5,
+            "job_id": "11025009866",
+            "job_title": "Data Analyst",
+            "matching_skill_count": 3,
+            "job_match_percentage": 75.0,
+            "skill_gap_percentage": 25.0,
+            "matching_skills": "data analysis | python | sql",
+            "missing_skills": "finance domain"
+        },
+        {
+            "rank": 6,
+            "job_id": "11025015649",
+            "job_title": "Data Analyst",
+            "matching_skill_count": 3,
+            "job_match_percentage": 75.0,
+            "skill_gap_percentage": 25.0,
+            "matching_skills": "data analysis | python | statistics",
+            "missing_skills": "mathematics"
+        },
+        {
+            "rank": 7,
+            "job_id": "31025003124",
+            "job_title": "Data Analyst",
+            "matching_skill_count": 3,
+            "job_match_percentage": 75.0,
+            "skill_gap_percentage": 25.0,
+            "matching_skills": "data analysis | python | sql",
+            "missing_skills": "finance domain"
+        },
+        {
+            "rank": 8,
+            "job_id": "31025909955",
+            "job_title": "Senior Data Analyst",
+            "matching_skill_count": 3,
+            "job_match_percentage": 75.0,
+            "skill_gap_percentage": 25.0,
+            "matching_skills": "data analysis | python | sql",
+            "missing_skills": "data wrangling"
+        },
+        {
+            "rank": 9,
+            "job_id": "31025501535",
+            "job_title": "Senior Data Analyst",
+            "matching_skill_count": 2,
+            "job_match_percentage": 66.67,
+            "skill_gap_percentage": 33.33,
+            "matching_skills": "data analysis | statistics",
+            "missing_skills": "information management"
+        },
+        {
+            "rank": 10,
+            "job_id": "31025500982",
+            "job_title": "Data Analyst",
+            "matching_skill_count": 3,
+            "job_match_percentage": 60.0,
+            "skill_gap_percentage": 40.0,
+            "matching_skills": "data analysis | decision-making | statistics",
+            "missing_skills": "business intelligence | play"
+        }
+    ],
+    "top_missing_skills": [
+        {
+            "skill_name": "business intelligence",
+            "jobs_requiring_skill": 15,
+            "demand_percentage": 21.43
+        },
+        {
+            "skill_name": "power bi",
+            "jobs_requiring_skill": 11,
+            "demand_percentage": 15.71
+        },
+        {
+            "skill_name": "dashboards",
+            "jobs_requiring_skill": 11,
+            "demand_percentage": 15.71
+        },
+        {
+            "skill_name": "tableau",
+            "jobs_requiring_skill": 10,
+            "demand_percentage": 14.29
+        },
+        {
+            "skill_name": "mathematics",
+            "jobs_requiring_skill": 7,
+            "demand_percentage": 10.0
+        },
+        {
+            "skill_name": "data management",
+            "jobs_requiring_skill": 7,
+            "demand_percentage": 10.0
+        },
+        {
+            "skill_name": "risk management",
+            "jobs_requiring_skill": 5,
+            "demand_percentage": 7.14
+        },
+        {
+            "skill_name": "data quality",
+            "jobs_requiring_skill": 5,
+            "demand_percentage": 7.14
+        },
+        {
+            "skill_name": "vba",
+            "jobs_requiring_skill": 4,
+            "demand_percentage": 5.71
+        },
+        {
+            "skill_name": "aws",
+            "jobs_requiring_skill": 3,
+            "demand_percentage": 4.29
+        },
+        {
+            "skill_name": "looker",
+            "jobs_requiring_skill": 3,
+            "demand_percentage": 4.29
+        },
+        {
+            "skill_name": "data modeling",
+            "jobs_requiring_skill": 3,
+            "demand_percentage": 4.29
+        },
+        {
+            "skill_name": "business analysis",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 2.86
+        },
+        {
+            "skill_name": "machine learning",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 2.86
+        },
+        {
+            "skill_name": "presentation",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 2.86
+        },
+        {
+            "skill_name": "database",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 2.86
+        },
+        {
+            "skill_name": "project management",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 2.86
+        },
+        {
+            "skill_name": "azure",
+            "jobs_requiring_skill": 1,
+            "demand_percentage": 1.43
+        },
+        {
+            "skill_name": "oracle",
+            "jobs_requiring_skill": 1,
+            "demand_percentage": 1.43
+        },
+        {
+            "skill_name": "data mining",
+            "jobs_requiring_skill": 1,
+            "demand_percentage": 1.43
+        }
+    ],
+    "target_role_analysis": {
+        "target_role": "Data Analyst",
+        "missing_skills": [
+            {
+                "skill_name": "business intelligence",
+                "jobs_requiring_skill": 15,
+                "demand_percentage": 21.43,
+                "priority": "MEDIUM"
+            },
+            {
+                "skill_name": "power bi",
+                "jobs_requiring_skill": 11,
+                "demand_percentage": 15.71,
+                "priority": "MEDIUM"
+            },
+            {
+                "skill_name": "dashboards",
+                "jobs_requiring_skill": 11,
+                "demand_percentage": 15.71,
+                "priority": "MEDIUM"
+            },
+            {
+                "skill_name": "tableau",
+                "jobs_requiring_skill": 10,
+                "demand_percentage": 14.29,
+                "priority": "MEDIUM"
+            },
+            {
+                "skill_name": "mathematics",
+                "jobs_requiring_skill": 7,
+                "demand_percentage": 10.0,
+                "priority": "MEDIUM"
+            },
+            {
+                "skill_name": "data management",
+                "jobs_requiring_skill": 7,
+                "demand_percentage": 10.0,
+                "priority": "MEDIUM"
+            },
+            {
+                "skill_name": "data quality",
+                "jobs_requiring_skill": 5,
+                "demand_percentage": 7.14,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "risk management",
+                "jobs_requiring_skill": 5,
+                "demand_percentage": 7.14,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "vba",
+                "jobs_requiring_skill": 4,
+                "demand_percentage": 5.71,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "data modeling",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 4.29,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "looker",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 4.29,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "aws",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 4.29,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "business analysis",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 2.86,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "project management",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 2.86,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "presentation",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 2.86,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "database",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 2.86,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "machine learning",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 2.86,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "data mining",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 1.43,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "oracle",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 1.43,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "azure",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 1.43,
+                "priority": "LOW"
+            }
+        ]
+    }
+}

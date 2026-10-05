@@ -1,0 +1,161 @@
+import csv
+import os
+
+FILE_NAME = "expenses.csv"
+
+
+def load_expenses():
+    """Load expenses from the CSV file."""
+    expenses = []
+
+    # If the file doesn't exist yet, start with an empty list
+    if not os.path.exists(FILE_NAME):
+        return expenses
+
+    with open(FILE_NAME, "r", newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            expenses.append({
+                "amount": float(row["amount"]),
+                "category": row["category"],
+                "description": row["description"]
+            })
+
+    return expenses
+
+
+def save_expenses(expenses):
+    """Save expenses to the CSV file."""
+    with open(FILE_NAME, "w", newline="", encoding="utf-8") as file:
+        fieldnames = ["amount", "category", "description"]
+
+        writer = csv.DictWriter(
+            file,
+            fieldnames=fieldnames
+        )
+
+        writer.writeheader()
+        writer.writerows(expenses)
+
+
+def add_expense(expenses):
+    """Add a new expense."""
+    print("\n--- Add Expense ---")
+
+    try:
+        amount = float(input("Enter amount: ₹"))
+
+        if amount <= 0:
+            print("Amount must be greater than 0.")
+            return
+
+    except ValueError:
+        print("Please enter a valid amount.")
+        return
+
+    category = input("Enter category: ").strip()
+    description = input("Enter description: ").strip()
+
+    if not category or not description:
+        print("Category and description cannot be empty.")
+        return
+
+    expense = {
+        "amount": amount,
+        "category": category,
+        "description": description
+    }
+
+    expenses.append(expense)
+
+    save_expenses(expenses)
+
+    print("\n✅ Expense added successfully!")
+
+
+def view_expenses(expenses):
+    """Display all expenses."""
+    print("\n--- All Expenses ---")
+
+    if not expenses:
+        print("No expenses recorded yet.")
+        return
+
+    for i, expense in enumerate(expenses, start=1):
+        print(
+            f"{i}. ₹{expense['amount']:.2f} | "
+            f"{expense['category']} | "
+            f"{expense['description']}"
+        )
+
+
+def total_expenses(expenses):
+    """Calculate and display total spending."""
+    total = sum(expense["amount"] for expense in expenses)
+
+    print("\n--- Total Spending ---")
+    print(f"Total Spending: ₹{total:.2f}")
+
+
+def category_summary(expenses):
+    """Display spending by category."""
+    print("\n--- Category Summary ---")
+
+    if not expenses:
+        print("No expenses recorded yet.")
+        return
+
+    summary = {}
+
+    for expense in expenses:
+        category = expense["category"]
+
+        if category in summary:
+            summary[category] += expense["amount"]
+        else:
+            summary[category] = expense["amount"]
+
+    for category, amount in summary.items():
+        print(f"{category}: ₹{amount:.2f}")
+
+
+def main():
+    """Main program."""
+    expenses = load_expenses()
+
+    while True:
+        print("\n================================")
+        print("      PERSONAL EXPENSE TRACKER")
+        print("================================")
+        print("1. Add Expense")
+        print("2. View Expenses")
+        print("3. Total Spending")
+        print("4. Category Summary")
+        print("5. Exit")
+        print("================================")
+
+        choice = input("Choose an option: ").strip()
+
+        if choice == "1":
+            add_expense(expenses)
+
+        elif choice == "2":
+            view_expenses(expenses)
+
+        elif choice == "3":
+            total_expenses(expenses)
+
+        elif choice == "4":
+            category_summary(expenses)
+
+        elif choice == "5":
+            print("\nThank you for using Personal Expense Tracker! 👋")
+            break
+
+        else:
+            print("\n❌ Invalid option. Please choose 1-5.")
+
+
+if __name__ == "__main__":
+    main()

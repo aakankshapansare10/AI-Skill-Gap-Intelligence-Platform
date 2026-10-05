@@ -1,0 +1,21 @@
+rank,skill_name,jobs_requiring_skill,demand_percentage
+1,business intelligence,15,21.43
+2,power bi,11,15.71
+3,dashboards,11,15.71
+4,tableau,10,14.29
+5,mathematics,7,10.0
+6,data management,7,10.0
+7,risk management,5,7.14
+8,data quality,5,7.14
+9,vba,4,5.71
+10,aws,3,4.29
+11,looker,3,4.29
+12,data modeling,3,4.29
+13,business analysis,2,2.86
+14,machine learning,2,2.86
+15,presentation,2,2.86
+16,database,2,2.86
+17,project management,2,2.86
+18,azure,1,1.43
+19,oracle,1,1.43
+20,data mining,1,1.43

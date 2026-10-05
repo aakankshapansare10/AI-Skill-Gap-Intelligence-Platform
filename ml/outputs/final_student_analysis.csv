@@ -1,0 +1,31 @@
+type,rank,name,match_percentage,skill_gap_percentage,details
+job_recommendation,1,Python-Data Analyst-BF,100.0,0.0,nan
+job_recommendation,2,JR. Data Analyst,100.0,0.0,nan
+job_recommendation,3,Senior Data Analyst,100.0,0.0,nan
+job_recommendation,4,Analyst - Data Analytics,80.0,20.0,mathematics
+job_recommendation,5,Data Analyst,75.0,25.0,finance domain
+job_recommendation,6,Data Analyst,75.0,25.0,mathematics
+job_recommendation,7,Data Analyst,75.0,25.0,finance domain
+job_recommendation,8,Senior Data Analyst,75.0,25.0,data wrangling
+job_recommendation,9,Senior Data Analyst,66.67,33.33,information management
+job_recommendation,10,Data Analyst,60.0,40.0,business intelligence | play
+missing_skill,,business intelligence,,,15
+missing_skill,,power bi,,,11
+missing_skill,,dashboards,,,11
+missing_skill,,tableau,,,10
+missing_skill,,mathematics,,,7
+missing_skill,,data management,,,7
+missing_skill,,risk management,,,5
+missing_skill,,data quality,,,5
+missing_skill,,vba,,,4
+missing_skill,,aws,,,3
+missing_skill,,looker,,,3
+missing_skill,,data modeling,,,3
+missing_skill,,business analysis,,,2
+missing_skill,,machine learning,,,2
+missing_skill,,presentation,,,2
+missing_skill,,database,,,2
+missing_skill,,project management,,,2
+missing_skill,,azure,,,1
+missing_skill,,oracle,,,1
+missing_skill,,data mining,,,1

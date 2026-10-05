@@ -1,0 +1,21 @@
+job_id,job_title,student_skills,required_skills,matching_skills,missing_skills,skill_gap_percentage,job_match_score,recommendation_score
+11025012046,Administrative Staff,"Python, SQL, Excel, Machine Learning","Excel, staff",excel,staff,50.0,0.5,50.0
+31025003124,Data Analyst,"Python, SQL, Excel, Machine Learning","Data Analyst, Python, SQL, finance domain","python, sql","data analyst, finance domain",50.0,0.5,50.0
+31025019028,GIS Developer - Python,"Python, SQL, Excel, Machine Learning","Programming, Python",python,programming,50.0,0.5,50.0
+31025501677,Orthodontist,"Python, SQL, Excel, Machine Learning","Excel, TEAMWORK",excel,teamwork,50.0,0.5,50.0
+11025009866,Data Analyst,"Python, SQL, Excel, Machine Learning","Data Analyst, Python, SQL, finance domain","python, sql","data analyst, finance domain",50.0,0.5,50.0
+11025016347,Immediate Hiring |15+ yrs - Data Architect - Mumbai/Bangalore location,"Python, SQL, Excel, Machine Learning","Azure, Data Architect, DataBricks, Python, SQL","python, sql","azure, data architect, databricks",60.0,0.4,40.0
+31025912440,Senior Associate - Fulfilment & Experience,"Python, SQL, Excel, Machine Learning","Excel, Fulfillment, SENIOR ASSOCIATE, SQL, innovative","excel, sql","fulfillment, innovative, senior associate",60.0,0.4,40.0
+31025908923,Senior Associate - Fulfilment & Experience,"Python, SQL, Excel, Machine Learning","Excel, Fulfillment, SENIOR ASSOCIATE, SQL, innovative","excel, sql","fulfillment, innovative, senior associate",60.0,0.4,40.0
+31025012913,MIS Executive,"Python, SQL, Excel, Machine Learning","Excel, Information Systems, MIS EXECUTIVE",excel,"information systems, mis executive",66.67,0.3333,33.33
+20925026519,Software Engineer - Python (AI),"Python, SQL, Excel, Machine Learning","Generative AI, Python, Software Engineer",python,"generative ai, software engineer",66.67,0.3333,33.33
+90925034230,Python & Pytorch Development,"Python, SQL, Excel, Machine Learning","Deep Learning, Learning, Machine, Machine Learning, PyTorch, Python","machine learning, python","deep learning, learning, machine, pytorch",66.67,0.3333,33.33
+11025913366,Scheduler 1,"Python, SQL, Excel, Machine Learning","Excel, PowerPoint, Scheduler",excel,"powerpoint, scheduler",66.67,0.3333,33.33
+11025013259,Assistant Manager-IT,"Python, SQL, Excel, Machine Learning","Assistant Manager, BTECH, Excel",excel,"assistant manager, btech",66.67,0.3333,33.33
+31025910480,Senior Associate - Fulfilment & Experience,"Python, SQL, Excel, Machine Learning","Excel, Fulfillment, Order, SENIOR ASSOCIATE, SQL, Supplier","excel, sql","fulfillment, order, senior associate, supplier",66.67,0.3333,33.33
+90625015061,Python Developer -ENG - Infosys@ PAN India,"Python, SQL, Excel, Machine Learning","Learning, Machine, Machine Learning, Python, Python Developer, pan india","machine learning, python","learning, machine, pan india, python developer",66.67,0.3333,33.33
+30825005519,Etl Tester,"Python, SQL, Excel, Machine Learning","ETL, Place, Python, SQL, Selenium, Tester","python, sql","etl, place, selenium, tester",66.67,0.3333,33.33
+110624000000,Recruiter Intern (Non Tech),"Python, SQL, Excel, Machine Learning","Excel, Fluent, Fluent communication",excel,"fluent, fluent communication",66.67,0.3333,33.33
+31025914518,Application Developer,"Python, SQL, Excel, Machine Learning","Programming, Python, programming language",python,"programming, programming language",66.67,0.3333,33.33
+31025004393,Team Leader,"Python, SQL, Excel, Machine Learning","Excel, Supervisor, TEAM LEADER",excel,"supervisor, team leader",66.67,0.3333,33.33
+11025503585,P2 Associate Manager - GIB Ops,"Python, SQL, Excel, Machine Learning","Excel, Financial Services, Fintech",excel,"financial services, fintech",66.67,0.3333,33.33

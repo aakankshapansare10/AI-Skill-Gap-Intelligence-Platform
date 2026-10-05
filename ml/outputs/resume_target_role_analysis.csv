@@ -1,0 +1,36 @@
+target_role,skill_name,jobs_requiring_skill,matching_jobs,missing_jobs,demand_percentage,student_has_skill,priority
+Data Analyst,business intelligence,15,0,15,21.43,No,MEDIUM
+Data Analyst,power bi,11,0,11,15.71,No,MEDIUM
+Data Analyst,dashboards,11,0,11,15.71,No,MEDIUM
+Data Analyst,tableau,10,0,10,14.29,No,MEDIUM
+Data Analyst,mathematics,7,0,7,10.0,No,MEDIUM
+Data Analyst,data management,7,0,7,10.0,No,MEDIUM
+Data Analyst,data quality,5,0,5,7.14,No,LOW
+Data Analyst,risk management,5,0,5,7.14,No,LOW
+Data Analyst,vba,4,0,4,5.71,No,LOW
+Data Analyst,data modeling,3,0,3,4.29,No,LOW
+Data Analyst,looker,3,0,3,4.29,No,LOW
+Data Analyst,aws,3,0,3,4.29,No,LOW
+Data Analyst,business analysis,2,0,2,2.86,No,LOW
+Data Analyst,project management,2,0,2,2.86,No,LOW
+Data Analyst,presentation,2,0,2,2.86,No,LOW
+Data Analyst,database,2,0,2,2.86,No,LOW
+Data Analyst,machine learning,2,0,2,2.86,No,LOW
+Data Analyst,data mining,1,0,1,1.43,No,LOW
+Data Analyst,oracle,1,0,1,1.43,No,LOW
+Data Analyst,azure,1,0,1,1.43,No,LOW
+Data Analyst,data analysis,57,57,0,81.43,Yes,ALREADY HAVE
+Data Analyst,python,24,24,0,34.29,Yes,ALREADY HAVE
+Data Analyst,sql,21,21,0,30.0,Yes,ALREADY HAVE
+Data Analyst,statistics,16,16,0,22.86,Yes,ALREADY HAVE
+Data Analyst,excel,14,14,0,20.0,Yes,ALREADY HAVE
+Data Analyst,data science,8,8,0,11.43,Yes,ALREADY HAVE
+Data Analyst,visualization,7,7,0,10.0,Yes,ALREADY HAVE
+Data Analyst,data warehousing,4,4,0,5.71,Yes,ALREADY HAVE
+Data Analyst,etl,4,4,0,5.71,Yes,ALREADY HAVE
+Data Analyst,research,3,3,0,4.29,Yes,ALREADY HAVE
+Data Analyst,databases,2,2,0,2.86,Yes,ALREADY HAVE
+Data Analyst,hadoop,2,2,0,2.86,Yes,ALREADY HAVE
+Data Analyst,numpy,2,2,0,2.86,Yes,ALREADY HAVE
+Data Analyst,pandas,2,2,0,2.86,Yes,ALREADY HAVE
+Data Analyst,problem solving,1,1,0,1.43,Yes,ALREADY HAVE

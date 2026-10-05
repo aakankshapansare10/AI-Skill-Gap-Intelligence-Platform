@@ -1,0 +1,21 @@
+recommendation_rank,job_id,job_title,total_job_skills,matching_skills,missing_skills,matching_skill_count,missing_skill_count,job_match_percentage,skill_gap_percentage
+1,11025502500,Python-Data Analyst-BF,5,data analysis | data science | python | sql | statistics,,5,0,100.0,0.0
+2,11025011046,JR. Data Analyst,1,data analysis,,1,0,100.0,0.0
+3,31025908739,Senior Data Analyst,1,data analysis,,1,0,100.0,0.0
+4,11025501124,Analyst - Data Analytics,5,data analysis | python | sql | statistics,mathematics,4,1,80.0,20.0
+5,11025009866,Data Analyst,4,data analysis | python | sql,finance domain,3,1,75.0,25.0
+6,11025015649,Data Analyst,4,data analysis | python | statistics,mathematics,3,1,75.0,25.0
+7,31025003124,Data Analyst,4,data analysis | python | sql,finance domain,3,1,75.0,25.0
+8,31025909955,Senior Data Analyst,4,data analysis | python | sql,data wrangling,3,1,75.0,25.0
+9,31025501535,Senior Data Analyst,3,data analysis | statistics,information management,2,1,66.67,33.33
+10,31025500982,Data Analyst,5,data analysis | decision-making | statistics,business intelligence | play,3,2,60.0,40.0
+11,31025012818,Data Analyst,9,commerce | data analysis | e-commerce | python | sql,api | api integration | aws | data analyst lead,5,4,55.56,44.44
+12,31025501186,Analyst-Data Analytics,6,business insights | data analysis | data science,business analysis | data sets | quantitative,3,3,50.0,50.0
+13,11025016244,Lead Data Analyst (Power BI),4,data analysis | python,business intelligence | power bi,2,2,50.0,50.0
+14,31025501527,Junior Data Analyst,2,data analysis,graduates,1,1,50.0,50.0
+15,11025501661,Data Analyst,9,data analysis | python | solve | sql,digital | expert | nutrition | sql queries | treatment,4,5,44.44,55.56
+16,11025501184,Sr Advanced Data Analyst,7,data analysis | data science | python,ai / ml | full-stack development | stack | stack development,3,4,42.86,57.14
+17,31025914385,Senior Data Analyst,7,data analysis | github | statistics,engineers | git | gitlab | quantitative,3,4,42.86,57.14
+18,20925012553,Data Analyst,5,data analysis | python,agency | brand | business administration,2,3,40.0,60.0
+19,31025011782,Data Analyst,5,data analysis | excel,mathematics | powerpoint | vba,2,3,40.0,60.0
+20,30925034885,Data Analyst,8,data analysis | excel | statistics,datasets | large datasets | sumif | vba | vlookup,3,5,37.5,62.5

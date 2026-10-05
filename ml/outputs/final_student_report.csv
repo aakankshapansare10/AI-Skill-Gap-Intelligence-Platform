@@ -1,0 +1,2 @@
+target_role,student_skills,best_matching_job,matching_skills,missing_skills,skill_gap_percentage,job_match_score,recommended_skills
+data analyst,"python, java, excel",Data Analyst,python,"data analyst, finance domain, sql",75.0,25.0,"data analyst, sql, data analysis, analytics, statistics, bi, power bi, dashboards, tableau, economics"
