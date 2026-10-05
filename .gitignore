@@ -7,3 +7,5 @@ __pycache__/
 .vscode/
 .idea/
 *.tmp
+ml/outputs/uploaded_resumes/
+ml/outputs/*.tmppg_hba.conf.txt

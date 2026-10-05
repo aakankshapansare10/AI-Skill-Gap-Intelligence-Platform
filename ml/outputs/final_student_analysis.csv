@@ -1,0 +1,31 @@
+type,rank,name,match_percentage,skill_gap_percentage,details
+job_recommendation,1,Data Analyst,50.0,50.0,data analyst | mathematics | statistical analysis
+job_recommendation,2,Data Analyst,50.0,50.0,data analyst | finance domain
+job_recommendation,3,Lead Data Analyst (Power BI),50.0,50.0,bi | data analyst
+job_recommendation,4,Data Analyst,50.0,50.0,data analyst | finance domain
+job_recommendation,5,Administrative Staff,50.0,50.0,staff
+job_recommendation,6,Power BI Professional,50.0,50.0,bi
+job_recommendation,7,Business Analyst,50.0,50.0,business analyst
+job_recommendation,8,GIS Developer - Python,50.0,50.0,programming
+job_recommendation,9,Orthodontist,50.0,50.0,teamwork
+job_recommendation,10,Python-Data Analyst-BF,44.44,55.56,data analyst | data science | languages | programming | programming languages
+missing_skill,,hr,,,1048
+missing_skill,,automation,,,894
+missing_skill,,security,,,824
+missing_skill,,business development,,,823
+missing_skill,,java,,,817
+missing_skill,,voice,,,802
+missing_skill,,digital,,,747
+missing_skill,,agile,,,737
+missing_skill,,aws,,,718
+missing_skill,,customer service,,,712
+missing_skill,,cross-functional,,,711
+missing_skill,,sap,,,710
+missing_skill,,azure,,,701
+missing_skill,,test,,,681
+missing_skill,,learning,,,651
+missing_skill,,frameworks,,,633
+missing_skill,,accounting,,,631
+missing_skill,,health,,,620
+missing_skill,,programming,,,618
+missing_skill,,strategy,,,598
