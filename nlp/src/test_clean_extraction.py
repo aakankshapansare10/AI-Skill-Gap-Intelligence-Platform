@@ -1,179 +1,144 @@
 import pandas as pd
-import ahocorasick
 
 from database import get_engine
 from text_preprocessing import preprocess_text
+from skill_extraction import (
+    load_skills,
+    build_automaton,
+    extract_skills_from_text
+)
 
 
-def load_clean_skills():
+# ============================================================
+# TEST ONE PROBLEMATIC JOB
+# ============================================================
 
-    print("Loading CLEAN skill dictionary...")
-
-    skills_df = pd.read_csv(
-        "../../data/processed/skills_dictionary_clean.csv"
-    )
-
-    print(f"Clean skills loaded: {len(skills_df):,}")
-
-    return skills_df
+JOB_ID = 240925000000
 
 
-def build_automaton(skills_df):
+print("=" * 70)
+print("CLEAN NLP EXTRACTION TEST")
+print("=" * 70)
 
-    print("\nBuilding Aho-Corasick matcher...")
+# ------------------------------------------------------------
+# 1. Load skills
+# ------------------------------------------------------------
 
-    automaton = ahocorasick.Automaton()
+skills_df = load_skills()
 
-    pattern_to_skill = {}
+print(f"\nSkills loaded: {len(skills_df):,}")
 
-    for _, row in skills_df.iterrows():
 
-        skill_id = int(row["skill_id"])
-        skill_name = str(row["skill_name"]).strip()
+# ------------------------------------------------------------
+# 2. Build Aho-Corasick matcher
+# ------------------------------------------------------------
 
-        normalized = preprocess_text(skill_name).strip()
+automaton = build_automaton(skills_df)
 
-        if not normalized:
-            continue
 
-        # Reject one-character alphabetic terms
-        if len(normalized) == 1 and normalized.isalpha():
-            continue
+# ------------------------------------------------------------
+# 3. Load the specific job
+# ------------------------------------------------------------
 
-        pattern = f" {normalized} "
+engine = get_engine()
 
-        if pattern not in pattern_to_skill:
+query = f"""
+SELECT
+    job_id,
+    title,
+    job_description
+FROM public.jobs
+WHERE job_id = {JOB_ID}
+"""
 
-            pattern_to_skill[pattern] = {
-                "skill_id": skill_id,
-                "skill_name": skill_name
-            }
+job_df = pd.read_sql_query(query, engine)
 
-    for pattern, skill in pattern_to_skill.items():
+engine.dispose()
 
-        automaton.add_word(
-            pattern,
-            skill
-        )
 
-    automaton.make_automaton()
+# ------------------------------------------------------------
+# 4. Check job exists
+# ------------------------------------------------------------
 
+if job_df.empty:
+    print(f"\nERROR: Job {JOB_ID} was not found.")
+    raise SystemExit
+
+
+job = job_df.iloc[0]
+
+print("\nJob found:")
+print(f"Job ID: {job['job_id']}")
+print(f"Title: {job['title']}")
+
+
+# ------------------------------------------------------------
+# 5. Extract skills
+# ------------------------------------------------------------
+
+description = job["job_description"]
+
+extracted_skills = extract_skills_from_text(
+    description,
+    automaton
+)
+
+
+# ------------------------------------------------------------
+# 6. Display results
+# ------------------------------------------------------------
+
+print("\n" + "=" * 70)
+print("EXTRACTION RESULT")
+print("=" * 70)
+
+print(f"\nTotal extracted skills: {len(extracted_skills):,}")
+
+
+# ------------------------------------------------------------
+# 7. Show all extracted skills
+# ------------------------------------------------------------
+
+print("\nExtracted skills:")
+
+for skill in extracted_skills:
     print(
-        f"Usable patterns: {len(pattern_to_skill):,}"
+        f"{skill['skill_id']:>6}  "
+        f"{skill['skill_name']}"
     )
 
-    return automaton
+
+# ------------------------------------------------------------
+# 8. Short-skill analysis
+# ------------------------------------------------------------
+
+short_skills = []
+
+for skill in extracted_skills:
+    name = str(skill["skill_name"]).strip()
+
+    if len(name) <= 2:
+        short_skills.append(name)
 
 
-def extract_skills(text, automaton):
+print("\n" + "=" * 70)
+print("SHORT SKILL CHECK")
+print("=" * 70)
 
-    normalized_text = preprocess_text(
-        text
-    ).strip()
+print(
+    f"\nSkills with <= 2 characters: "
+    f"{len(short_skills):,}"
+)
 
-    padded_text = f" {normalized_text} "
-
-    found = {}
-
-    for _, skill in automaton.iter(
-        padded_text
-    ):
-
-        skill_id = skill["skill_id"]
-
-        if skill_id not in found:
-
-            found[skill_id] = skill
-
-    return list(found.values())
+if short_skills:
+    print("\nThese are the <=2 character skills:")
+    print(", ".join(short_skills))
 
 
-def load_test_job():
+# ------------------------------------------------------------
+# 9. Final message
+# ------------------------------------------------------------
 
-    engine = get_engine()
-
-    query = """
-        SELECT job_id, title, job_description
-        FROM public.jobs
-        WHERE job_id = 240925000000
-    """
-
-    df = pd.read_sql_query(
-        query,
-        engine
-    )
-
-    engine.dispose()
-
-    return df
-
-
-if __name__ == "__main__":
-
-    print("=" * 70)
-    print("CLEAN NLP EXTRACTION TEST")
-    print("=" * 70)
-
-    skills_df = load_clean_skills()
-
-    automaton = build_automaton(
-        skills_df
-    )
-
-    job_df = load_test_job()
-
-    if job_df.empty:
-
-        print(
-            "\nERROR: Test job not found."
-        )
-
-        exit()
-
-    job = job_df.iloc[0]
-
-    print("\nTest Job:")
-    print(f"Job ID: {job['job_id']}")
-    print(f"Title : {job['title']}")
-
-    results = extract_skills(
-        job["job_description"],
-        automaton
-    )
-
-    print(
-        f"\nExtracted skills: {len(results)}"
-    )
-
-    print("\nExtracted skill list:")
-
-    for skill in results:
-
-        print(
-            f"{skill['skill_id']:>6} | "
-            f"{skill['skill_name']}"
-        )
-
-    short_skills = [
-        skill
-        for skill in results
-        if len(str(skill["skill_name"]).strip()) <= 2
-    ]
-
-    print(
-        f"\nSkills <= 2 characters: "
-        f"{len(short_skills)}"
-    )
-
-    if short_skills:
-
-        print("\nWARNING - short skills found:")
-
-        for skill in short_skills:
-
-            print(
-                skill["skill_id"],
-                skill["skill_name"]
-            )
-
-    print("\nTest completed.")
+print("\n" + "=" * 70)
+print("TEST COMPLETED")
+print("=" * 70)
