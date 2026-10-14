@@ -1,8 +1,40 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Brain, Target, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 function Home() {
+  const [lastResult, setLastResult] = useState(null);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("careergenome_last_analysis");
+      if (stored) setLastResult(JSON.parse(stored));
+    } catch {
+      setLastResult(null);
+    }
+  }, []);
+
+  const analysis = lastResult?.analysis || null;
+  const overall = analysis?.overall_analysis || {};
+  const profile = analysis?.student_profile || {};
+  const targetAnalysis = analysis?.target_role_analysis || {};
+  const targetRole = lastResult?.targetRole || targetAnalysis?.target_role || "";
+  const matchScore = Number(overall?.best_job_match_percentage);
+  const displayMatch = Number.isFinite(matchScore) && matchScore > 0
+    ? Math.round(matchScore)
+    : null;
+  const studentSkills = Array.isArray(profile?.skills) ? profile.skills : [];
+  const missingSkills = Array.isArray(targetAnalysis?.missing_skills)
+    ? targetAnalysis.missing_skills
+    : [];
+  const nextSkill = missingSkills[0]?.skill_name || "Analyze your resume to discover";
+  const previewSkills = [
+    { name: studentSkills[0] || "Your skills", value: studentSkills.length ? 92 : 70, strong: true },
+    { name: studentSkills[1] || "Target role skills", value: studentSkills.length > 1 ? 84 : 55, strong: true },
+    { name: missingSkills[0]?.skill_name || "Skills to develop", value: missingSkills.length ? 58 : 40, strong: false },
+  ];
+
   return (
     <main>
 
@@ -79,50 +111,32 @@ function Home() {
                     </p>
 
                     <p className="mt-1 text-4xl font-bold text-gray-900">
-                      87%
+                      {displayMatch !== null ? `${displayMatch}%` : "—"}
                     </p>
                   </div>
 
                   <div className="flex h-16 w-16 items-center justify-center rounded-full border-8 border-indigo-100 text-sm font-bold text-indigo-600">
-                    87
+                    {displayMatch !== null ? displayMatch : "—"}
                   </div>
                 </div>
 
                 <div className="space-y-4">
-
-                  <div>
-                    <div className="mb-2 flex justify-between text-sm">
-                      <span className="font-medium">Python</span>
-                      <span className="text-green-600">Strong</span>
+                  {previewSkills.map((skill, index) => (
+                    <div key={`${skill.name}-${index}`}>
+                      <div className="mb-2 flex justify-between gap-3 text-sm">
+                        <span className="truncate font-medium">{skill.name}</span>
+                        <span className={skill.strong ? "shrink-0 text-green-600" : "shrink-0 text-orange-500"}>
+                          {skill.strong ? (analysis ? "In Resume" : "Example") : (analysis ? "Develop" : "Preview")}
+                        </span>
+                      </div>
+                      <div className="h-2 rounded-full bg-gray-100">
+                        <div
+                          className={`h-2 rounded-full ${skill.strong ? "bg-indigo-600" : "bg-purple-500"}`}
+                          style={{ width: `${skill.value}%` }}
+                        />
+                      </div>
                     </div>
-
-                    <div className="h-2 rounded-full bg-gray-100">
-                      <div className="h-2 w-[92%] rounded-full bg-indigo-600" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mb-2 flex justify-between text-sm">
-                      <span className="font-medium">SQL</span>
-                      <span className="text-green-600">Strong</span>
-                    </div>
-
-                    <div className="h-2 rounded-full bg-gray-100">
-                      <div className="h-2 w-[84%] rounded-full bg-indigo-600" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mb-2 flex justify-between text-sm">
-                      <span className="font-medium">Machine Learning</span>
-                      <span className="text-orange-500">Develop</span>
-                    </div>
-
-                    <div className="h-2 rounded-full bg-gray-100">
-                      <div className="h-2 w-[58%] rounded-full bg-purple-500" />
-                    </div>
-                  </div>
-
+                  ))}
                 </div>
 
                 <div className="mt-7 rounded-2xl bg-indigo-50 p-4">
@@ -131,7 +145,7 @@ function Home() {
                   </p>
 
                   <p className="mt-1 text-sm text-indigo-700">
-                    Advanced Machine Learning
+                    {analysis ? nextSkill : "Your personalized next skill"}
                   </p>
                 </div>
 
@@ -215,7 +229,7 @@ function Home() {
                 </div>
 
                 <div className="rounded-full bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-600">
-                  87% Match
+                  {displayMatch !== null ? `${displayMatch}% Match` : "Personalized Match"}
                 </div>
               </div>
 
@@ -268,7 +282,7 @@ function Home() {
                 </p>
 
                 <p className="mt-1 text-sm text-indigo-700">
-                  Strengthen Machine Learning fundamentals
+                  {analysis ? `Strengthen ${nextSkill}` : "Analyze your resume to find your next step"}
                 </p>
               </div>
 

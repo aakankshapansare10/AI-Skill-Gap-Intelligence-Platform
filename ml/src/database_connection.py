@@ -3,13 +3,15 @@ import pandas as pd
 from urllib.parse import quote_plus
 
 import os
+from dotenv import load_dotenv
 
-DB_USER = "postgres"
-DB_PASSWORD = "Postgres@5100"
-DB_HOST = "localhost"
-DB_PORT = "5100"
-DB_NAME = "ai_skill_gaps"
-encoded_password = quote_plus(DB_PASSWORD)
+load_dotenv()
+
+DB_USER = os.getenv("DB_USER", "postgres")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = os.getenv("DB_PORT", "5100")
+DB_NAME = os.getenv("DB_NAME", "ai_skill_gaps")
 
 DATABASE_URL = (
     f"postgresql+psycopg2://{DB_USER}:{encoded_password}"

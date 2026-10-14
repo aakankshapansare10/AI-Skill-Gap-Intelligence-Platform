@@ -1,266 +1,143 @@
 import os
 import subprocess
 import sys
+from pathlib import Path
 
 
-# ------------------------------------------------------------
+# ============================================================
 # PROJECT ROOT
-# ------------------------------------------------------------
+# ============================================================
 
-PROJECT_ROOT = os.path.abspath(
-    os.path.join(
-        os.path.dirname(__file__),
-        "..",
-        ".."
-    )
-)
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+ML_SRC = PROJECT_ROOT / "ml" / "src"
+ML_OUTPUTS = PROJECT_ROOT / "ml" / "outputs"
+
+FINAL_JSON = ML_OUTPUTS / "final_student_analysis.json"
 
 
-# ------------------------------------------------------------
-# RESUME SKILL EXTRACTION
-# ------------------------------------------------------------
+# ============================================================
+# RUN PIPELINE SCRIPT
+# ============================================================
+
+def run_script(script_name, input_text=None):
+    script_path = ML_SRC / script_name
+
+    if not script_path.exists():
+        raise FileNotFoundError(
+            f"Pipeline script not found: {script_path}"
+        )
+
+    print()
+    print("=" * 60)
+    print(f"RUNNING: {script_name}")
+    print("=" * 60)
+
+    try:
+        result = subprocess.run(
+            [sys.executable, str(script_path)],
+            input=input_text,
+            text=True,
+            cwd=str(PROJECT_ROOT),
+            capture_output=True,
+            check=False,
+        )
+
+        if result.stdout:
+            print(result.stdout)
+
+        if result.returncode != 0:
+            if result.stderr:
+                print("ERROR OUTPUT:")
+                print(result.stderr)
+
+            raise RuntimeError(
+                f"{script_name} failed with exit code "
+                f"{result.returncode}."
+            )
+
+        if result.stderr:
+            print("SCRIPT MESSAGES:")
+            print(result.stderr)
+
+    except OSError as exc:
+        raise RuntimeError(
+            f"Could not execute {script_name}: {exc}"
+        ) from exc
+
+
+# ============================================================
+# STEP 1: RESUME SKILL EXTRACTION
+# ============================================================
 
 def run_resume_skill_extractor(resume_path):
-
-    print()
-    print("=" * 60)
-    print("STEP 1: EXTRACTING RESUME SKILLS")
-    print("=" * 60)
-
-    command = [
-        sys.executable,
-        os.path.join(
-            PROJECT_ROOT,
-            "ml",
-            "src",
-            "resume_skill_extractor.py"
-        )
-    ]
-
-    process = subprocess.run(
-        command,
-        input=resume_path + "\n",
-        text=True,
-        cwd=PROJECT_ROOT
+    run_script(
+        "resume_skill_extractor.py",
+        input_text=f"{resume_path}\n",
     )
 
-    if process.returncode != 0:
 
-        raise RuntimeError(
-            "Resume skill extraction failed."
-        )
-
-
-# ------------------------------------------------------------
-# RESUME JOB MATCHING
-# ------------------------------------------------------------
+# ============================================================
+# STEP 2: RESUME JOB MATCHING
+# ============================================================
 
 def run_job_matching(target_role):
-
-    print()
-    print("=" * 60)
-    print("STEP 2: MATCHING RESUME WITH TARGET-ROLE JOBS")
-    print("=" * 60)
-
-    command = [
-        sys.executable,
-        os.path.join(
-            PROJECT_ROOT,
-            "ml",
-            "src",
-            "resume_job_matching.py"
-        )
-    ]
-
-    process = subprocess.run(
-        command,
-        input=target_role + "\n",
-        text=True,
-        cwd=PROJECT_ROOT
+    run_script(
+        "resume_job_matching.py",
+        input_text=f"{target_role}\n",
     )
 
-    if process.returncode != 0:
 
-        raise RuntimeError(
-            "Resume job matching failed."
-        )
-
-
-# ------------------------------------------------------------
-# JOB RECOMMENDATIONS
-# ------------------------------------------------------------
+# ============================================================
+# STEP 3: JOB RECOMMENDATIONS
+# ============================================================
 
 def run_job_recommendations():
-
-    print()
-    print("=" * 60)
-    print("STEP 3: GENERATING JOB RECOMMENDATIONS")
-    print("=" * 60)
-
-    command = [
-        sys.executable,
-        os.path.join(
-            PROJECT_ROOT,
-            "ml",
-            "src",
-            "resume_job_recommendation.py"
-        )
-    ]
-
-    process = subprocess.run(
-        command,
-        text=True,
-        cwd=PROJECT_ROOT
-    )
-
-    if process.returncode != 0:
-
-        raise RuntimeError(
-            "Job recommendation failed."
-        )
+    run_script("resume_job_recommendation.py")
 
 
-# ------------------------------------------------------------
-# SKILL GAP ANALYSIS
-# ------------------------------------------------------------
+# ============================================================
+# STEP 4: SKILL GAP ANALYSIS
+# ============================================================
 
 def run_skill_gap_analysis():
-
-    print()
-    print("=" * 60)
-    print("STEP 4: ANALYZING SKILL GAPS")
-    print("=" * 60)
-
-    command = [
-        sys.executable,
-        os.path.join(
-            PROJECT_ROOT,
-            "ml",
-            "src",
-            "resume_skill_gap_analysis.py"
-        )
-    ]
-
-    process = subprocess.run(
-        command,
-        text=True,
-        cwd=PROJECT_ROOT
-    )
-
-    if process.returncode != 0:
-
-        raise RuntimeError(
-            "Skill gap analysis failed."
-        )
+    run_script("resume_skill_gap_analysis.py")
 
 
-# ------------------------------------------------------------
-# TARGET ROLE ANALYSIS
-# ------------------------------------------------------------
+# ============================================================
+# STEP 5: TARGET ROLE ANALYSIS
+# ============================================================
 
 def run_target_role_analysis(target_role):
-
-    print()
-    print("=" * 60)
-    print("STEP 5: ANALYZING TARGET ROLE")
-    print("=" * 60)
-
-    command = [
-        sys.executable,
-        os.path.join(
-            PROJECT_ROOT,
-            "ml",
-            "src",
-            "resume_target_role_analysis.py"
-        )
-    ]
-
-    process = subprocess.run(
-        command,
-        input=target_role + "\n",
-        text=True,
-        cwd=PROJECT_ROOT
+    run_script(
+        "resume_target_role_analysis.py",
+        input_text=f"{target_role}\n",
     )
 
-    if process.returncode != 0:
 
-        raise RuntimeError(
-            "Target role analysis failed."
-        )
-
-
-# ------------------------------------------------------------
-# FINAL ANALYSIS
-# ------------------------------------------------------------
+# ============================================================
+# STEP 6: FINAL STUDENT ANALYSIS
+# ============================================================
 
 def run_final_analysis():
-
-    print()
-    print("=" * 60)
-    print("STEP 6: CREATING FINAL STUDENT ANALYSIS")
-    print("=" * 60)
-
-    command = [
-        sys.executable,
-        os.path.join(
-            PROJECT_ROOT,
-            "ml",
-            "src",
-            "final_student_analysis.py"
-        )
-    ]
-
-    process = subprocess.run(
-        command,
-        text=True,
-        cwd=PROJECT_ROOT
-    )
-
-    if process.returncode != 0:
-
-        raise RuntimeError(
-            "Final student analysis failed."
-        )
+    run_script("final_student_analysis.py")
 
 
-# ------------------------------------------------------------
+# ============================================================
 # COMPLETE PIPELINE
-# ------------------------------------------------------------
+# ============================================================
 
-def run_complete_analysis(
-    resume_path,
-    target_role
-):
+def run_complete_analysis(resume_path, target_role):
+    resume_path = str(Path(resume_path).resolve())
+    target_role = (target_role or "").strip()
 
-    # --------------------------------------------------------
-    # CHECK RESUME
-    # --------------------------------------------------------
-
-    if not os.path.exists(resume_path):
-
+    if not os.path.isfile(resume_path):
         raise FileNotFoundError(
-            "Resume file not found: "
-            + resume_path
+            f"Resume file not found: {resume_path}"
         )
 
-
-    # --------------------------------------------------------
-    # CHECK TARGET ROLE
-    # --------------------------------------------------------
-
-    if not target_role or not target_role.strip():
-
-        raise ValueError(
-            "Target role cannot be empty."
-        )
-
-
-    target_role = target_role.strip()
-
-
-    # --------------------------------------------------------
-    # PIPELINE HEADER
-    # --------------------------------------------------------
+    if not target_role:
+        raise ValueError("Target role cannot be empty.")
 
     print()
     print("#" * 60)
@@ -268,165 +145,80 @@ def run_complete_analysis(
     print("# COMPLETE RESUME ANALYSIS PIPELINE")
     print("#" * 60)
 
-    print()
-    print("Resume:")
-    print(resume_path)
+    print(f"\nResume: {resume_path}")
+    print(f"Target role: {target_role}")
 
-    print()
-    print("Target Role:")
-    print(target_role)
+    # Remove the previous result before running the pipeline.
+    # This prevents an old JSON from being mistaken for a new result.
+    if FINAL_JSON.exists():
+        FINAL_JSON.unlink()
 
+    ML_OUTPUTS.mkdir(parents=True, exist_ok=True)
 
-    # --------------------------------------------------------
-    # STEP 1
-    # --------------------------------------------------------
+    # Step 1
+    run_resume_skill_extractor(resume_path)
 
-    run_resume_skill_extractor(
-        resume_path
-    )
+    # Step 2
+    run_job_matching(target_role)
 
-
-    # --------------------------------------------------------
-    # STEP 2
-    # TARGET ROLE IS NOW PASSED
-    # --------------------------------------------------------
-
-    run_job_matching(
-        target_role
-    )
-
-
-    # --------------------------------------------------------
-    # STEP 3
-    # --------------------------------------------------------
-
+    # Step 3
     run_job_recommendations()
 
-
-    # --------------------------------------------------------
-    # STEP 4
-    # --------------------------------------------------------
-
+    # Step 4
     run_skill_gap_analysis()
 
+    # Step 5
+    run_target_role_analysis(target_role)
 
-    # --------------------------------------------------------
-    # STEP 5
-    # --------------------------------------------------------
-
-    run_target_role_analysis(
-        target_role
-    )
-
-
-    # --------------------------------------------------------
-    # STEP 6
-    # --------------------------------------------------------
-
+    # Step 6
     run_final_analysis()
 
+    # Validate final output
+    if not FINAL_JSON.exists():
+        raise FileNotFoundError(
+            "Final analysis JSON was not generated: "
+            f"{FINAL_JSON}"
+        )
 
-    # --------------------------------------------------------
-    # COMPLETE
-    # --------------------------------------------------------
+    if FINAL_JSON.stat().st_size == 0:
+        raise RuntimeError(
+            "Final analysis JSON exists but is empty."
+        )
 
     print()
     print("#" * 60)
     print("# COMPLETE ANALYSIS FINISHED")
     print("#" * 60)
+    print(f"Final output: {FINAL_JSON}")
 
 
-    # --------------------------------------------------------
-    # FINAL JSON
-    # --------------------------------------------------------
-
-    output_file = os.path.join(
-        PROJECT_ROOT,
-        "ml",
-        "outputs",
-        "final_student_analysis.json"
-    )
-
-
-    if os.path.exists(output_file):
-
-        print()
-        print(
-            "Final output:",
-            output_file
-        )
-
-    else:
-
-        print()
-        print(
-            "WARNING: Final JSON file was not found."
-        )
-
-
-# ------------------------------------------------------------
-# MAIN
-# ------------------------------------------------------------
+# ============================================================
+# COMMAND-LINE ENTRY POINT
+# ============================================================
 
 if __name__ == "__main__":
-
     print("=" * 60)
     print("RESUME ANALYSIS PIPELINE")
     print("=" * 60)
-
-
-    # --------------------------------------------------------
-    # RESUME PATH
-    # --------------------------------------------------------
 
     resume_path = input(
         "\nEnter resume TXT file path: "
     ).strip().strip('"')
 
-
-    # --------------------------------------------------------
-    # TARGET ROLE
-    # --------------------------------------------------------
-
     target_role = input(
         "Enter target role: "
     ).strip()
 
-
-    # --------------------------------------------------------
-    # VALIDATE TARGET ROLE
-    # --------------------------------------------------------
-
-    if not target_role:
-
-        print()
-        print(
-            "ERROR: Target role cannot be empty."
-        )
-
-        sys.exit(1)
-
-
-    # --------------------------------------------------------
-    # RUN PIPELINE
-    # --------------------------------------------------------
-
     try:
-
         run_complete_analysis(
             resume_path,
-            target_role
+            target_role,
         )
 
     except Exception as error:
-
         print()
         print("=" * 60)
         print("PIPELINE ERROR")
         print("=" * 60)
-
-        print(
-            str(error)
-        )
-
+        print(str(error))
         sys.exit(1)

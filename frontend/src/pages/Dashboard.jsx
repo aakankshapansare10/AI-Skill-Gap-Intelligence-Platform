@@ -1,71 +1,92 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  ArrowUpRight,
-  CheckCircle2,
-  CircleAlert,
-  Target,
-  TrendingUp,
+  ArrowRight,
   Brain,
   BriefcaseBusiness,
-  BookOpen,
+  CheckCircle2,
+  ChevronRight,
+  CircleAlert,
+  Code2,
+  Database,
+  FileSearch,
+  GitBranch,
   GraduationCap,
+  Lightbulb,
+  Rocket,
   Sparkles,
+  Target,
+  TrendingUp,
+  Upload,
+  XCircle,
 } from "lucide-react";
 import {
-  ResponsiveContainer,
-  RadarChart,
-  PolarGrid,
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import {
   PolarAngleAxis,
-  PolarRadiusAxis,
+  PolarGrid,
   Radar,
+  RadarChart,
+  ResponsiveContainer,
 } from "recharts";
 
-function normalizeSkill(skill) {
-  return String(skill || "")
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function normalizeSkill(value) {
+  return String(value || "")
     .trim()
-    .toLowerCase();
+    .toLowerCase()
+    .replace(/\s+/g, " ");
 }
 
-function formatSkill(skill) {
-  const text = String(skill || "").trim();
+function formatSkill(value) {
+  if (!value) return "";
 
-  if (!text) return "";
-
-  const special = {
+  const specialCases = {
     sql: "SQL",
-    aws: "AWS",
-    api: "API",
-    ai: "AI",
-    nlp: "NLP",
     python: "Python",
-    postgresql: "PostgreSQL",
-    "power bi": "Power BI",
-    "big data analytics": "Big Data Analytics",
-    "c++": "C++",
-    "c#": "C#",
+    aws: "AWS",
+    azure: "Azure",
+    nlp: "NLP",
+    ai: "AI",
+    api: "API",
+    css: "CSS",
+    html: "HTML",
+    javascript: "JavaScript",
     "machine learning": "Machine Learning",
+    "deep learning": "Deep Learning",
+    "data science": "Data Science",
+    "data analysis": "Data Analysis",
+    "power bi": "Power BI",
+    "git hub": "GitHub",
+    github: "GitHub",
+    mysql: "MySQL",
+    mongodb: "MongoDB",
+    numpy: "NumPy",
+    pandas: "Pandas",
   };
 
-  const lower = text.toLowerCase();
+  const normalized = normalizeSkill(value);
 
-  if (special[lower]) {
-    return special[lower];
+  if (specialCases[normalized]) {
+    return specialCases[normalized];
   }
 
-  return text
-    .split(" ")
-    .map(
-      (word) =>
-        word.charAt(0).toUpperCase() + word.slice(1)
-    )
-    .join(" ");
+  return String(value)
+    .trim()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 function uniqueSkills(skills) {
   const seen = new Set();
 
-  return skills.filter((skill) => {
+  return (skills || []).filter((skill) => {
     const normalized = normalizeSkill(skill);
 
     if (!normalized || seen.has(normalized)) {
@@ -77,1268 +98,1879 @@ function uniqueSkills(skills) {
   });
 }
 
+/* =========================================================
+   ANIMATED NUMBER
+========================================================= */
+
+function AnimatedNumber({ value, decimals = 0, suffix = "" }) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    const numericValue = Number(value) || 0;
+    const duration = 1100;
+    const startTime = performance.now();
+
+    let frame;
+
+    const animate = (currentTime) => {
+      const progress = Math.min(
+        (currentTime - startTime) / duration,
+        1
+      );
+
+      const eased =
+        1 - Math.pow(1 - progress, 3);
+
+      setDisplayValue(numericValue * eased);
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(animate);
+      }
+    };
+
+    frame = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(frame);
+  }, [value]);
+
+  return (
+    <>
+      {displayValue.toFixed(decimals)}
+      {suffix}
+    </>
+  );
+}
+
+/* =========================================================
+   MATCH RING
+========================================================= */
+
+function MatchRing({ score }) {
+  const radius = 86;
+  const circumference = 2 * Math.PI * radius;
+
+  const safeScore = Math.min(
+    Math.max(Number(score) || 0, 0),
+    100
+  );
+
+  const offset =
+    circumference -
+    (safeScore / 100) * circumference;
+
+  return (
+    <div className="relative flex h-64 w-64 items-center justify-center">
+      {/* Glow */}
+      <motion.div
+        className="absolute inset-8 rounded-full bg-indigo-500/20 blur-3xl"
+        animate={{
+          scale: [0.9, 1.08, 0.9],
+          opacity: [0.35, 0.6, 0.35],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <svg
+        viewBox="0 0 220 220"
+        className="relative h-full w-full -rotate-90"
+      >
+        <circle
+          cx="110"
+          cy="110"
+          r={radius}
+          fill="none"
+          stroke="#EEF2FF"
+          strokeWidth="16"
+        />
+
+        <motion.circle
+          cx="110"
+          cy="110"
+          r={radius}
+          fill="none"
+          stroke="url(#matchGradient)"
+          strokeWidth="16"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          initial={{
+            strokeDashoffset: circumference,
+          }}
+          animate={{
+            strokeDashoffset: offset,
+          }}
+          transition={{
+            duration: 1.8,
+            ease: "easeOut",
+          }}
+        />
+
+        <defs>
+          <linearGradient
+            id="matchGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+            <stop offset="0%" stopColor="#4338CA" />
+            <stop offset="55%" stopColor="#7C3AED" />
+            <stop offset="100%" stopColor="#06B6D4" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="text-4xl font-black tracking-tight text-gray-950">
+          <AnimatedNumber
+            value={safeScore}
+            decimals={2}
+            suffix="%"
+          />
+        </span>
+
+        <span className="mt-1 text-sm font-medium text-gray-500">
+          Career Match
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   FLOATING SKILL NODE
+========================================================= */
+
+function SkillNode({
+  name,
+  icon: Icon = Sparkles,
+  x,
+  y,
+  delay,
+  color = "indigo",
+}) {
+  const colorClasses = {
+    indigo:
+      "border-indigo-200 bg-indigo-50 text-indigo-700",
+    cyan:
+      "border-cyan-200 bg-cyan-50 text-cyan-700",
+    violet:
+      "border-violet-200 bg-violet-50 text-violet-700",
+    emerald:
+      "border-emerald-200 bg-emerald-50 text-emerald-700",
+    orange:
+      "border-orange-200 bg-orange-50 text-orange-700",
+  };
+
+  return (
+    <motion.div
+      className="absolute hidden sm:block"
+      style={{
+        left: x,
+        top: y,
+      }}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        y: [0, -10, 0],
+      }}
+      transition={{
+        opacity: {
+          duration: 0.5,
+          delay,
+        },
+        scale: {
+          duration: 0.5,
+          delay,
+        },
+        y: {
+          duration: 4 + delay,
+          repeat: Infinity,
+          ease: "easeInOut",
+        },
+      }}
+    >
+      <motion.div
+        whileHover={{
+          scale: 1.08,
+          rotate: 2,
+        }}
+        className={`flex items-center gap-2 rounded-2xl border px-3 py-2 text-xs font-semibold shadow-lg shadow-indigo-100/30 backdrop-blur-md ${colorClasses[color]}`}
+      >
+        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-white shadow-sm">
+          <Icon size={14} />
+        </span>
+
+        {formatSkill(name)}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   CAREER GENOME VISUAL
+========================================================= */
+
+function CareerGenome({ skills }) {
+  const genomeIcons = [
+    { icon: Code2, color: "indigo" },
+    { icon: Database, color: "cyan" },
+    { icon: Brain, color: "violet" },
+    { icon: TrendingUp, color: "emerald" },
+    { icon: Target, color: "orange" },
+    { icon: Sparkles, color: "indigo" },
+  ];
+
+  const genomeSkills = uniqueSkills(skills)
+    .slice(0, 6)
+    .map((name, index) => ({
+      name,
+      ...genomeIcons[index % genomeIcons.length],
+    }));
+
+  return (
+    <div className="relative h-[420px] overflow-hidden rounded-[2rem] border border-indigo-100 bg-gradient-to-br from-white via-indigo-50/60 to-violet-100/50 p-5 shadow-inner">
+      {/* Background glow */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-400/20 blur-3xl"
+        animate={{
+          scale: [0.9, 1.15, 0.9],
+          opacity: [0.3, 0.55, 0.3],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Orbit lines */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full border border-indigo-200/70"
+        animate={{ rotate: 360 }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+
+      <motion.div
+        className="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-200/80"
+        animate={{ rotate: -360 }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+
+      <motion.div
+        className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200/70"
+        animate={{ rotate: 360 }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+
+      {/* Floating nodes: skills extracted from the uploaded resume */}
+      {genomeSkills.map((skill, index) => {
+        const positions = [
+          { x: "9%", y: "18%" },
+          { x: "71%", y: "17%" },
+          { x: "72%", y: "70%" },
+          { x: "8%", y: "70%" },
+          { x: "41%", y: "5%" },
+          { x: "39%", y: "84%" },
+        ];
+
+        return (
+          <SkillNode
+            key={`${normalizeSkill(skill.name)}-${index}`}
+            {...skill}
+            {...positions[index]}
+            delay={0.1 + index * 0.15}
+          />
+        );
+      })}
+
+      {/* Center */}
+      <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+        <motion.div
+          animate={{
+            rotate: [0, 2, -2, 0],
+            scale: [1, 1.03, 1],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="relative flex h-40 w-40 items-center justify-center rounded-full border border-white/80 bg-gradient-to-br from-indigo-600 via-violet-600 to-cyan-500 shadow-2xl shadow-indigo-500/30"
+        >
+          <div className="absolute inset-3 rounded-full border border-white/20" />
+
+          <div className="absolute inset-7 rounded-full border border-white/20" />
+
+          <div className="flex flex-col items-center text-white">
+            <Sparkles size={28} />
+
+            <span className="mt-2 text-sm font-semibold">
+              Career
+            </span>
+
+            <span className="text-lg font-black">
+              Genome
+            </span>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Status */}
+      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-2xl border border-white/80 bg-white/70 px-4 py-3 backdrop-blur-xl">
+        <div>
+          <p className="text-xs font-medium text-gray-500">
+            Skill profile
+          </p>
+
+          <p className="text-sm font-bold text-gray-900">
+            {skills.length} skill areas detected
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700">
+          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          AI analyzed
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   STAT CARD
+========================================================= */
+
+function StatCard({
+  icon: Icon,
+  label,
+  value,
+  suffix = "",
+  tone = "indigo",
+}) {
+  const tones = {
+    indigo:
+      "from-indigo-50 to-violet-50 text-indigo-600",
+    emerald:
+      "from-emerald-50 to-teal-50 text-emerald-600",
+    orange:
+      "from-orange-50 to-amber-50 text-orange-600",
+    cyan:
+      "from-cyan-50 to-sky-50 text-cyan-600",
+  };
+
+  return (
+    <motion.div
+      whileHover={{
+        y: -5,
+        rotateX: 2,
+        rotateY: -2,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
+      }}
+      style={{
+        transformStyle: "preserve-3d",
+      }}
+      className="group rounded-3xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow hover:shadow-xl hover:shadow-indigo-100/40"
+    >
+      <div className="flex items-center justify-between">
+        <div
+          className={`flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br ${tones[tone]}`}
+        >
+          <Icon size={20} />
+        </div>
+
+        <Sparkles
+          size={15}
+          className="text-gray-200 transition group-hover:text-indigo-300"
+        />
+      </div>
+
+      <div className="mt-5">
+        <p className="text-sm text-gray-500">
+          {label}
+        </p>
+
+        <p className="mt-1 text-3xl font-black tracking-tight text-gray-950">
+          <AnimatedNumber
+            value={value}
+            suffix={suffix}
+          />
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+function SectionTitle({
+  eyebrow,
+  title,
+  description,
+  icon: Icon = Sparkles,
+}) {
+  return (
+    <div>
+      <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-indigo-600">
+        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-indigo-50">
+          <Icon size={14} />
+        </span>
+
+        {eyebrow}
+      </div>
+
+      <h2 className="text-2xl font-black tracking-tight text-gray-950 sm:text-3xl">
+        {title}
+      </h2>
+
+      {description && (
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-500">
+          {description}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/* =========================================================
+   ANALYSIS PIPELINE
+========================================================= */
+
+function AnalysisPipeline() {
+  const steps = [
+    {
+      icon: Upload,
+      title: "Resume analyzed",
+      text: "Resume content processed",
+    },
+    {
+      icon: Brain,
+      title: "Skills extracted",
+      text: "Relevant skills identified",
+    },
+    {
+      icon: BriefcaseBusiness,
+      title: "Job comparison",
+      text: "Market requirements compared",
+    },
+    {
+      icon: CircleAlert,
+      title: "Gaps detected",
+      text: "Missing skills identified",
+    },
+    {
+      icon: Rocket,
+      title: "Roadmap built",
+      text: "Next steps generated",
+    },
+  ];
+
+  return (
+    <div className="mt-8 overflow-x-auto pb-3">
+      <div className="flex min-w-[850px] items-center justify-between gap-3">
+        {steps.map((step, index) => {
+          const Icon = step.icon;
+
+          return (
+            <div
+              key={step.title}
+              className="flex flex-1 items-center gap-3"
+            >
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.7,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  delay: index * 0.12,
+                }}
+                whileHover={{
+                  y: -5,
+                }}
+                className="flex min-w-0 flex-1 flex-col items-center text-center"
+              >
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50 to-violet-50 text-indigo-600 shadow-sm">
+                  <Icon size={22} />
+
+                  <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-bold text-white">
+                    {index + 1}
+                  </span>
+                </div>
+
+                <p className="mt-3 text-xs font-bold text-gray-900">
+                  {step.title}
+                </p>
+
+                <p className="mt-1 text-[11px] text-gray-400">
+                  {step.text}
+                </p>
+              </motion.div>
+
+              {index !== steps.length - 1 && (
+                <ChevronRight
+                  size={18}
+                  className="shrink-0 text-indigo-200"
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   SKILL PILL
+========================================================= */
+
+function SkillPill({ skill, tone = "green" }) {
+  const classes =
+    tone === "green"
+      ? "border-emerald-100 bg-emerald-50 text-emerald-700"
+      : "border-orange-100 bg-orange-50 text-orange-700";
+
+  return (
+    <motion.span
+      whileHover={{
+        y: -2,
+        scale: 1.03,
+      }}
+      className={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-semibold ${classes}`}
+    >
+      {formatSkill(skill)}
+    </motion.span>
+  );
+}
+
+/* =========================================================
+   SKILL GAP CARD
+========================================================= */
+
+function SkillGapCard({ skill }) {
+  const demand = Number(skill.demand_percentage) || 0;
+  const priority = String(
+    skill.priority || "LOW"
+  ).toUpperCase();
+
+  const priorityClass =
+    priority === "HIGH"
+      ? "bg-red-50 text-red-600 border-red-100"
+      : priority === "MEDIUM"
+        ? "bg-orange-50 text-orange-600 border-orange-100"
+        : "bg-gray-50 text-gray-500 border-gray-100";
+
+  return (
+    <motion.div
+      whileHover={{
+        y: -4,
+        scale: 1.01,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 280,
+        damping: 22,
+      }}
+      className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h3 className="font-bold text-gray-900">
+            {formatSkill(skill.skill_name)}
+          </h3>
+
+          <p className="mt-1 text-xs text-gray-400">
+            Required by {skill.jobs_requiring_skill || 0} jobs
+          </p>
+        </div>
+
+        <span
+          className={`rounded-full border px-2.5 py-1 text-[10px] font-bold ${priorityClass}`}
+        >
+          {priority}
+        </span>
+      </div>
+
+      <div className="mt-4">
+        <div className="h-2 overflow-hidden rounded-full bg-gray-100">
+          <motion.div
+            initial={{
+              width: 0,
+            }}
+            whileInView={{
+              width: `${Math.min(demand, 100)}%`,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 1,
+              ease: "easeOut",
+            }}
+            className="h-full rounded-full bg-gradient-to-r from-orange-400 to-amber-500"
+          />
+        </div>
+
+        <p className="mt-2 text-xs text-gray-400">
+          {demand.toFixed(2)}% job demand
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   SKILL GAP FLOW MAP
+========================================================= */
+
+function SkillGapFlow({ matchingSkills, missingSkills, targetRole }) {
+  const topGaps = [...missingSkills]
+    .sort((a, b) => {
+      const priorityOrder = { HIGH: 0, MEDIUM: 1, LOW: 2 };
+      const pa =
+        priorityOrder[String(a.priority || "LOW").toUpperCase()] ?? 3;
+      const pb =
+        priorityOrder[String(b.priority || "LOW").toUpperCase()] ?? 3;
+
+      if (pa !== pb) return pa - pb;
+
+      return (
+        Number(b.demand_percentage || 0) -
+        Number(a.demand_percentage || 0)
+      );
+    })
+    .slice(0, 6);
+
+  const priorityStyles = {
+    HIGH: "border-red-200 bg-red-50 text-red-700",
+    MEDIUM: "border-orange-200 bg-orange-50 text-orange-700",
+    LOW: "border-gray-200 bg-gray-50 text-gray-600",
+  };
+
+  return (
+    <div className="mt-6 overflow-hidden rounded-[2rem] border border-indigo-100 bg-gradient-to-br from-white via-indigo-50/40 to-violet-50/60 p-5 sm:p-7">
+      <div className="relative">
+        {/* Desktop connectors */}
+        <div className="pointer-events-none absolute left-[23%] right-[23%] top-[72px] hidden h-px bg-gradient-to-r from-emerald-200 via-indigo-300 to-orange-200 lg:block" />
+        <div className="pointer-events-none absolute left-[50%] top-[72px] hidden h-[calc(100%-145px)] w-px bg-gradient-to-b from-indigo-200 via-orange-200 to-transparent lg:block" />
+
+        <div className="grid gap-5 lg:grid-cols-[1fr_1.15fr_1fr] lg:items-start">
+          {/* Current profile */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative z-10 rounded-3xl border border-emerald-100 bg-white/90 p-5 shadow-sm backdrop-blur"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
+                <CheckCircle2 size={20} />
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-emerald-600">
+                  CURRENT PROFILE
+                </p>
+                <h3 className="font-black text-gray-950">
+                  Skills You Have
+                </h3>
+              </div>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              {matchingSkills.slice(0, 8).map((skill) => (
+                <span
+                  key={normalizeSkill(skill)}
+                  className="rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-700"
+                >
+                  {formatSkill(skill)}
+                </span>
+              ))}
+            </div>
+
+            <p className="mt-4 text-xs text-gray-400">
+              {matchingSkills.length} aligned skills detected
+            </p>
+          </motion.div>
+
+          {/* Target role */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative z-20 flex flex-col items-center"
+          >
+            <motion.div
+              animate={{
+                scale: [1, 1.04, 1],
+                boxShadow: [
+                  "0 10px 30px rgba(99,102,241,.15)",
+                  "0 15px 45px rgba(99,102,241,.28)",
+                  "0 10px 30px rgba(99,102,241,.15)",
+                ],
+              }}
+              transition={{
+                duration: 3.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="flex h-28 w-28 items-center justify-center rounded-full border-8 border-white bg-gradient-to-br from-indigo-600 via-violet-600 to-cyan-500 text-white"
+            >
+              <Target size={34} />
+            </motion.div>
+
+            <div className="mt-4 rounded-2xl border border-indigo-100 bg-white px-5 py-3 text-center shadow-sm">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-indigo-500">
+                Target Role
+              </p>
+              <p className="mt-1 max-w-[190px] text-sm font-black text-gray-950">
+                {targetRole}
+              </p>
+            </div>
+
+            <div className="mt-3 hidden items-center gap-2 lg:flex">
+              <span className="h-2 w-2 rounded-full bg-indigo-500" />
+              <span className="text-[10px] font-bold text-gray-400">
+                GAP ANALYSIS
+              </span>
+              <span className="h-2 w-2 rounded-full bg-orange-400" />
+            </div>
+          </motion.div>
+
+          {/* Missing skills */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative z-10 rounded-3xl border border-orange-100 bg-white/90 p-5 shadow-sm backdrop-blur"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-50 text-orange-600">
+                <CircleAlert size={20} />
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-orange-600">
+                  DETECTED GAPS
+                </p>
+                <h3 className="font-black text-gray-950">
+                  Skills To Develop
+                </h3>
+              </div>
+            </div>
+
+            <div className="mt-4 space-y-2">
+              {topGaps.length > 0 ? (
+                topGaps.map((skill, index) => {
+                  const priority = String(
+                    skill.priority || "LOW"
+                  ).toUpperCase();
+
+                  return (
+                    <motion.div
+                      key={`${skill.skill_name}-${index}`}
+                      initial={{ opacity: 0, x: 12 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.07 }}
+                      whileHover={{ x: 4 }}
+                      className="flex items-center justify-between gap-2 rounded-2xl border border-gray-100 bg-gray-50/80 px-3 py-2.5"
+                    >
+                      <div className="min-w-0">
+                        <p className="truncate text-xs font-bold text-gray-800">
+                          {formatSkill(skill.skill_name)}
+                        </p>
+                        <p className="mt-0.5 text-[10px] text-gray-400">
+                          {Number(skill.demand_percentage || 0).toFixed(2)}%
+                          demand
+                        </p>
+                      </div>
+
+                      <span
+                        className={`shrink-0 rounded-full border px-2 py-1 text-[9px] font-black ${
+                          priorityStyles[priority] ||
+                          priorityStyles.LOW
+                        }`}
+                      >
+                        {priority}
+                      </span>
+                    </motion.div>
+                  );
+                })
+              ) : (
+                <p className="rounded-2xl bg-emerald-50 p-4 text-xs font-semibold text-emerald-700">
+                  No major skill gaps detected.
+                </p>
+              )}
+            </div>
+
+            {missingSkills.length > 6 && (
+              <p className="mt-3 text-center text-[10px] font-semibold text-gray-400">
+                + {missingSkills.length - 6} more gaps in the detailed list
+              </p>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Flow direction */}
+        <div className="mt-6 flex flex-col items-center justify-center gap-2 lg:flex-row">
+          <div className="flex items-center gap-2 rounded-full border border-indigo-100 bg-white px-4 py-2 shadow-sm">
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+            <span className="text-[10px] font-bold text-gray-500">
+              YOUR SKILLS
+            </span>
+          </div>
+
+          <ArrowRight className="rotate-90 text-indigo-300 lg:rotate-0" size={16} />
+
+          <div className="flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-4 py-2 shadow-sm">
+            <span className="h-2.5 w-2.5 rounded-full bg-indigo-600" />
+            <span className="text-[10px] font-bold text-indigo-700">
+              TARGET ROLE
+            </span>
+          </div>
+
+          <ArrowRight className="rotate-90 text-indigo-300 lg:rotate-0" size={16} />
+
+          <div className="flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-4 py-2 shadow-sm">
+            <span className="h-2.5 w-2.5 rounded-full bg-orange-500" />
+            <span className="text-[10px] font-bold text-orange-700">
+              SKILL GAPS
+            </span>
+          </div>
+
+          <ArrowRight className="rotate-90 text-indigo-300 lg:rotate-0" size={16} />
+
+          <div className="flex items-center gap-2 rounded-full border border-violet-100 bg-violet-50 px-4 py-2 shadow-sm">
+            <span className="h-2.5 w-2.5 rounded-full bg-violet-600" />
+            <span className="text-[10px] font-bold text-violet-700">
+              LEARNING ROADMAP
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   ROADMAP
+========================================================= */
+
+function RoadmapCard({ item, index }) {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        x: -20,
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+      viewport={{
+        once: true,
+      }}
+      transition={{
+        delay: index * 0.08,
+      }}
+      whileHover={{
+        x: 5,
+      }}
+      className="relative flex gap-4"
+    >
+      <div className="relative flex flex-col items-center">
+        <div className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-600 text-sm font-black text-white shadow-lg shadow-indigo-200">
+          {String(index + 1).padStart(2, "0")}
+        </div>
+
+        {index !== 5 && (
+          <div className="absolute top-10 h-full w-px bg-gradient-to-b from-indigo-200 to-transparent" />
+        )}
+      </div>
+
+      <div className="mb-6 flex-1 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-sm font-bold text-gray-900">
+              {formatSkill(item.skill_name)}
+            </p>
+
+            <p className="mt-1 text-xs text-gray-400">
+              Priority:{" "}
+              {String(item.priority || "LOW").toUpperCase()}
+            </p>
+          </div>
+
+          <span className="rounded-full bg-indigo-50 px-2.5 py-1 text-[10px] font-bold text-indigo-600">
+            {Number(item.demand_percentage || 0).toFixed(2)}%
+          </span>
+        </div>
+
+        <div className="mt-3 flex items-center gap-2 text-xs text-gray-500">
+          <Lightbulb
+            size={14}
+            className="text-indigo-500"
+          />
+
+          Build this skill to improve your alignment with the target role.
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   JOB RECOMMENDATION
+========================================================= */
+
+function JobCard({ job, index }) {
+  const match = Number(
+    job.job_match_percentage
+  ) || 0;
+
+  return (
+    <motion.div
+      whileHover={{
+        y: -7,
+        rotateX: 2,
+        rotateY: -2,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      }}
+      style={{
+        transformStyle: "preserve-3d",
+      }}
+      className="group rounded-3xl border border-gray-100 bg-white p-5 shadow-sm hover:shadow-xl hover:shadow-indigo-100/40"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-50 font-black text-indigo-600">
+            #{index + 1}
+          </div>
+
+          <div>
+            <h3 className="font-bold text-gray-900">
+              {job.job_title || "Recommended Role"}
+            </h3>
+
+            <p className="mt-1 text-xs text-gray-400">
+              Career opportunity
+            </p>
+          </div>
+        </div>
+
+        <ArrowRight
+          size={18}
+          className="text-gray-300 transition group-hover:translate-x-1 group-hover:text-indigo-600"
+        />
+      </div>
+
+      <div className="mt-5">
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="text-xs text-gray-400">
+              Job match
+            </p>
+
+            <p className="mt-1 text-2xl font-black text-indigo-600">
+              {match.toFixed(2)}%
+            </p>
+          </div>
+
+          <div className="h-16 w-16">
+            <svg
+              viewBox="0 0 40 40"
+              className="h-full w-full -rotate-90"
+            >
+              <circle
+                cx="20"
+                cy="20"
+                r="15"
+                fill="none"
+                stroke="#EEF2FF"
+                strokeWidth="4"
+              />
+
+              <motion.circle
+                cx="20"
+                cy="20"
+                r="15"
+                fill="none"
+                stroke="#6366F1"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeDasharray="94"
+                initial={{
+                  strokeDashoffset: 94,
+                }}
+                whileInView={{
+                  strokeDashoffset:
+                    94 - (Math.min(match, 100) / 100) * 94,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 1,
+                }}
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 border-t border-gray-100 pt-4">
+        <p className="text-xs font-semibold text-gray-500">
+          Matching skills
+        </p>
+
+        <div className="mt-2 flex flex-wrap gap-2">
+          {String(job.matching_skills || "")
+            .split("|")
+            .map((skill) => skill.trim())
+            .filter(Boolean)
+            .slice(0, 5)
+            .map((skill) => (
+              <span
+                key={skill}
+                className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold text-emerald-700"
+              >
+                {formatSkill(skill)}
+              </span>
+            ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* =========================================================
+   MAIN DASHBOARD
+========================================================= */
+
 function Dashboard() {
   const location = useLocation();
 
-  const analysis = location.state?.analysis || null;
+  // Keep the latest analysis available after refresh or when the user
+  // returns to the dashboard from another page.
+  const [savedResult, setSavedResult] = useState(() => {
+    try {
+      const stored = localStorage.getItem("careergenome_last_analysis");
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const stateAnalysis = location.state?.analysis || null;
+
+  useEffect(() => {
+    if (!stateAnalysis) return;
+
+    const resultToSave = {
+      analysis: stateAnalysis,
+      targetRole:
+        location.state?.targetRole ||
+        stateAnalysis?.target_role_analysis?.target_role ||
+        "Target Role",
+      filename: location.state?.filename || "",
+      savedAt: new Date().toISOString(),
+    };
+
+    try {
+      localStorage.setItem(
+        "careergenome_last_analysis",
+        JSON.stringify(resultToSave)
+      );
+      setSavedResult(resultToSave);
+    } catch (error) {
+      console.warn("Could not save the latest analysis locally.", error);
+    }
+  }, [
+    stateAnalysis,
+    location.state?.targetRole,
+    location.state?.filename,
+  ]);
+
+  const analysis = stateAnalysis || savedResult?.analysis || null;
 
   const targetRole =
     location.state?.targetRole ||
+    savedResult?.targetRole ||
     analysis?.target_role_analysis?.target_role ||
     "Target Role";
 
-  /*
-    -------------------------------------------------------
-    BACKEND DATA
-    -------------------------------------------------------
-  */
+  const studentProfile =
+    analysis?.student_profile || {};
 
-  const studentProfile = analysis?.student_profile || {};
-  const overallAnalysis = analysis?.overall_analysis || {};
+  const overallAnalysis =
+    analysis?.overall_analysis || {};
+
   const targetRoleAnalysis =
     analysis?.target_role_analysis || {};
 
-  const studentSkills = useMemo(() => {
+  const studentSkills = useMemo(
+    () =>
+      uniqueSkills(
+        studentProfile.skills || []
+      ),
+    [studentProfile.skills]
+  );
+
+  const missingSkills = useMemo(
+    () =>
+      Array.isArray(
+        targetRoleAnalysis.missing_skills
+      )
+        ? targetRoleAnalysis.missing_skills
+        : [],
+    [targetRoleAnalysis.missing_skills]
+  );
+
+  // Trust the backend's target-role matched list rather than guessing by
+  // subtracting missing skills from every skill found in the resume.
+  const matchingSkills = useMemo(() => {
+    const roleMatchedSkills = targetRoleAnalysis?.matched_skills;
+
+    if (!Array.isArray(roleMatchedSkills)) return [];
+
     return uniqueSkills(
-      Array.isArray(studentProfile.skills)
-        ? studentProfile.skills
-        : []
-    );
-  }, [studentProfile.skills]);
-
-  /*
-    -------------------------------------------------------
-    SKILL GAPS
-    -------------------------------------------------------
-  */
-
-  const missingSkills = useMemo(() => {
-    const skills = Array.isArray(
-      targetRoleAnalysis.missing_skills
-    )
-      ? targetRoleAnalysis.missing_skills
-      : [];
-
-    return skills.map((item) => ({
-      name: formatSkill(item.skill_name),
-      jobsRequired:
-        Number(item.jobs_requiring_skill) || 0,
-      demandPercentage:
-        Number(item.demand_percentage) || 0,
-      priority: String(item.priority || "LOW").toUpperCase(),
-    }));
-  }, [targetRoleAnalysis.missing_skills]);
-
-  /*
-    -------------------------------------------------------
-    MATCHING SKILLS
-    -------------------------------------------------------
-  */
-
-  const missingSkillNames = useMemo(() => {
-    return new Set(
-      missingSkills.map((skill) =>
-        normalizeSkill(skill.name)
+      roleMatchedSkills.map((skill) =>
+        typeof skill === "string" ? skill : skill?.skill_name
       )
     );
-  }, [missingSkills]);
+  }, [targetRoleAnalysis]);
 
-  const matchingSkills = useMemo(() => {
-    return studentSkills.filter(
-      (skill) =>
-        !missingSkillNames.has(
-          normalizeSkill(skill)
-        )
-    );
-  }, [studentSkills, missingSkillNames]);
-
-  /*
-    -------------------------------------------------------
-    MATCH SCORE
-    -------------------------------------------------------
-  */
-
-  const matchScore =
-    Number(
-      overallAnalysis.best_job_match_percentage
-    ) || 0;
-
-  const totalSkills =
-    Number(studentProfile.total_skills) ||
-    studentSkills.length;
-
-  /*
-    -------------------------------------------------------
-    CAREER RECOMMENDATIONS
-    -------------------------------------------------------
-  */
+  // Career Match must represent the selected target role, not the best job
+  // match across the whole dataset.
+  const matchScore = useMemo(() => {
+    const roleScore = Number(targetRoleAnalysis?.match_percentage);
+    if (!Number.isFinite(roleScore)) return 0;
+    return Math.min(100, Math.max(0, roleScore));
+  }, [targetRoleAnalysis]);
 
   const recommendations = useMemo(() => {
-    const jobs = Array.isArray(
-      overallAnalysis.top_job_recommendations
-    )
-      ? overallAnalysis.top_job_recommendations
-      : [];
+    const primary = overallAnalysis?.top_job_recommendations;
+    const fallback = analysis?.top_job_recommendations;
 
-    return jobs.slice(0, 5).map((job) => {
-      const matching = String(
-        job.matching_skills || ""
-      )
-        .split("|")
-        .map((skill) => skill.trim())
-        .filter(Boolean);
+    const jobs = Array.isArray(primary)
+      ? primary
+      : Array.isArray(fallback)
+        ? fallback
+        : [];
 
-      const missing = String(
-        job.missing_skills || ""
-      )
-        .split("|")
-        .map((skill) => skill.trim())
-        .filter(Boolean);
+    return jobs.filter(Boolean);
+  }, [
+    overallAnalysis?.top_job_recommendations,
+    analysis?.top_job_recommendations,
+  ]);
 
-      return {
-        rank: job.rank,
-        title:
-          job.job_title || "Recommended Role",
-        jobMatch:
-          Number(job.job_match_percentage) || 0,
-        skillGap:
-          Number(job.skill_gap_percentage) || 0,
-        matchingSkills: matching,
-        missingSkills: missing,
-      };
-    });
-  }, [overallAnalysis.top_job_recommendations]);
-
-  /*
-    -------------------------------------------------------
-    LEARNING ROADMAP
-    -------------------------------------------------------
-
-    Backend doesn't provide a separate learning roadmap.
-
-    So we intelligently build one from the actual
-    missing_skills returned by the backend.
-
-    Priority:
-    HIGH → MEDIUM → LOW
-
-    Within the same priority:
-    Higher job demand → earlier in roadmap
-  */
-
-  const learningRoadmap = useMemo(() => {
-    const priorityOrder = {
-      HIGH: 1,
-      MEDIUM: 2,
-      LOW: 3,
-    };
-
+  const roadmap = useMemo(() => {
     return [...missingSkills]
       .sort((a, b) => {
-        const priorityDifference =
-          (priorityOrder[a.priority] || 4) -
-          (priorityOrder[b.priority] || 4);
+        const priorityOrder = {
+          HIGH: 0,
+          MEDIUM: 1,
+          LOW: 2,
+        };
 
-        if (priorityDifference !== 0) {
-          return priorityDifference;
+        const priorityA =
+          priorityOrder[
+            String(a.priority || "LOW").toUpperCase()
+          ] ?? 3;
+
+        const priorityB =
+          priorityOrder[
+            String(b.priority || "LOW").toUpperCase()
+          ] ?? 3;
+
+        if (priorityA !== priorityB) {
+          return priorityA - priorityB;
         }
 
         return (
-          b.demandPercentage -
-          a.demandPercentage
+          Number(b.demand_percentage || 0) -
+          Number(a.demand_percentage || 0)
         );
       })
-      .slice(0, 6)
-      .map((skill, index) => {
-        let phase = "Build Core Skills";
-
-        if (index < 2) {
-          phase = "Priority Skills";
-        } else if (index < 4) {
-          phase = "Core Technical Skills";
-        } else {
-          phase = "Supporting Skills";
-        }
-
-        let reason =
-          "This skill appears in the job-market requirements for your target role.";
-
-        if (skill.priority === "HIGH") {
-          reason =
-            "High-priority skill with strong relevance to your target career path.";
-        } else if (
-          skill.demandPercentage >= 15
-        ) {
-          reason =
-            "Frequently requested by jobs in the analyzed job-market data.";
-        } else if (
-          skill.demandPercentage >= 5
-        ) {
-          reason =
-            "A useful supporting skill that can strengthen your career alignment.";
-        }
-
-        return {
-          ...skill,
-          step: index + 1,
-          phase,
-          reason,
-        };
-      });
+      .slice(0, 6);
   }, [missingSkills]);
 
-  /*
-    -------------------------------------------------------
-    CAREER DNA
-    -------------------------------------------------------
-  */
+  /* =========================================================
+     RADAR
+  ========================================================= */
 
-  const radarData = useMemo(() => {
-    const importantSkills = [
-      "Python",
-      "SQL",
-      "Data Science",
-      "Machine Learning",
-      "Statistics",
-      "Data Analysis",
-    ];
+  const radarSkills = [
+    "Python",
+    "SQL",
+    "Data Science",
+    "Machine Learning",
+    "Statistics",
+    "Data Analysis",
+  ];
 
-    return importantSkills.map((skill) => {
-      const exists = studentSkills.some(
-        (studentSkill) =>
-          normalizeSkill(studentSkill) ===
-          normalizeSkill(skill)
-      );
+  const radarData = radarSkills.map((skill) => ({
+    skill,
+    value: matchingSkills.some(
+      (matchedSkill) => normalizeSkill(matchedSkill) === normalizeSkill(skill)
+    )
+      ? 100
+      : 0,
+  }));
 
-      return {
-        skill,
-        value: exists ? 100 : 0,
-      };
-    });
-  }, [studentSkills]);
-
-  /*
-    -------------------------------------------------------
-    GROWTH STATUS
-    -------------------------------------------------------
-  */
-
-  const growthPotential = useMemo(() => {
-    if (matchScore >= 80) return "Excellent";
-    if (matchScore >= 60) return "Strong";
-    if (matchScore >= 40) return "Developing";
-    return "Needs Improvement";
-  }, [matchScore]);
-
-  const matchMessage = useMemo(() => {
-    if (matchScore >= 80) {
-      return "Your profile is strongly aligned with the target career path.";
-    }
-
-    if (matchScore >= 60) {
-      return "You already have a solid foundation for this career path.";
-    }
-
-    if (matchScore >= 40) {
-      return "There is a good foundation, with several skills still worth developing.";
-    }
-
-    return "Focus on the recommended skills to improve your career alignment.";
-  }, [matchScore]);
-
-  /*
-    -------------------------------------------------------
-    NO ANALYSIS STATE
-    -------------------------------------------------------
-  */
+  /* =========================================================
+     NO DATA
+  ========================================================= */
 
   if (!analysis) {
     return (
-      <main className="min-h-screen bg-[#F7F8FC] px-6 py-16">
-        <div className="mx-auto max-w-4xl">
-          <div className="rounded-3xl border border-gray-100 bg-white p-10 text-center shadow-sm">
-            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
-              <Brain size={30} />
+      <main className="min-h-[75vh] bg-[#F7F8FC] px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            className="rounded-[2rem] border border-gray-100 bg-white p-10 text-center shadow-xl shadow-indigo-100/30"
+          >
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-indigo-50 text-indigo-600">
+              <FileSearch size={34} />
             </div>
 
-            <h1 className="text-3xl font-bold text-gray-900">
-              No Analysis Available
+            <h1 className="mt-6 text-3xl font-black text-gray-950">
+              Your Career Genome is waiting.
             </h1>
 
             <p className="mx-auto mt-3 max-w-xl text-gray-500">
-              Analyze your resume first to generate your
-              Career Intelligence dashboard.
+              Upload your resume and let CareerGenome
+              analyze your skills, career alignment and
+              skill gaps.
             </p>
 
             <Link
               to="/analyze"
-              className="mt-7 inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white transition hover:bg-indigo-700"
+              className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-6 py-3.5 font-bold text-white shadow-lg shadow-indigo-200 transition hover:bg-indigo-700"
             >
               Analyze My Resume
-              <ArrowUpRight size={18} />
+              <ArrowRight size={18} />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#F7F8FC] px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <main className="relative overflow-hidden bg-[#F7F8FC] px-4 py-8 sm:px-6 lg:px-8">
+      {/* =====================================================
+          AMBIENT BACKGROUND
+      ===================================================== */}
 
-        {/* HEADER */}
+      <motion.div
+        className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-indigo-300/20 blur-3xl"
+        animate={{
+          x: [0, 40, 0],
+          y: [0, -30, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
-        <section className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-indigo-600">
-              <Brain size={18} />
-              Career Intelligence
+      <motion.div
+        className="pointer-events-none absolute -right-40 top-[35%] h-96 w-96 rounded-full bg-violet-300/20 blur-3xl"
+        animate={{
+          x: [0, -30, 0],
+          y: [0, 40, 0],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl">
+        {/* =================================================
+            HERO
+        ================================================= */}
+
+        <motion.section
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.6,
+          }}
+          className="relative overflow-hidden rounded-[2rem] border border-indigo-100 bg-white p-6 shadow-xl shadow-indigo-100/30 sm:p-8 lg:p-10"
+        >
+          <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+            {/* Left */}
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-bold text-indigo-600">
+                <Sparkles size={13} />
+                Your Career Intelligence
+              </div>
+
+              <h1 className="mt-5 max-w-xl text-4xl font-black tracking-tight text-gray-950 sm:text-5xl">
+                Your career is a{" "}
+                <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-cyan-500 bg-clip-text text-transparent">
+                  genome.
+                </span>
+              </h1>
+
+              <p className="mt-4 max-w-xl text-base leading-7 text-gray-500">
+                We analyzed your resume, extracted your
+                skills and compared them with real job
+                requirements to build your personalized
+                career intelligence.
+              </p>
+
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <div className="rounded-2xl border border-gray-100 bg-gray-50 px-4 py-3">
+                  <p className="text-xs text-gray-400">
+                    Target role
+                  </p>
+
+                  <p className="mt-1 font-bold text-gray-900">
+                    {targetRole}
+                  </p>
+                </div>
+
+                <Link
+                  to="/analyze"
+                  className="group inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-lg shadow-indigo-200 transition hover:bg-indigo-700"
+                >
+                  Analyze Again
+                  <ArrowRight
+                    size={17}
+                    className="transition group-hover:translate-x-1"
+                  />
+                </Link>
+              </div>
             </div>
 
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Your Career Dashboard
-            </h1>
-
-            <p className="mt-3 text-base text-gray-500">
-              Here's how your current skills compare with
-              your target role.
-            </p>
+            {/* Genome Visual */}
+            <div className="relative">
+              <CareerGenome
+                skills={studentSkills}
+              />
+            </div>
           </div>
+        </motion.section>
 
-          <div className="rounded-2xl border border-gray-100 bg-white px-6 py-4 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
-              Target Role
-            </p>
+        {/* =================================================
+            STATS
+        ================================================= */}
 
-            <p className="mt-1 text-lg font-bold text-gray-900">
-              {targetRole}
-            </p>
-          </div>
+        <section className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <StatCard
+            icon={Brain}
+            label="Skills Identified"
+            value={studentSkills.length}
+            tone="indigo"
+          />
+
+          <StatCard
+            icon={CheckCircle2}
+            label="Matching Skills"
+            value={matchingSkills.length}
+            tone="emerald"
+          />
+
+          <StatCard
+            icon={CircleAlert}
+            label="Skill Gaps"
+            value={
+              targetRoleAnalysis?.missing_skill_count ??
+              missingSkills.length
+            }
+            tone="orange"
+          />
+
+          <StatCard
+            icon={Target}
+            label="Career Match"
+            value={matchScore}
+            suffix="%"
+            tone="cyan"
+          />
         </section>
 
-        {/* STAT CARDS */}
-
-        <section className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-
-          {/* Career Match */}
-
-          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <div className="flex items-start justify-between">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-                <Target size={22} />
-              </div>
-
-              <TrendingUp
-                size={19}
-                className="text-emerald-500"
-              />
-            </div>
-
-            <p className="mt-7 text-sm text-gray-500">
-              Career Match
-            </p>
-
-            <p className="mt-1 text-3xl font-bold text-gray-900">
-              {matchScore.toFixed(2)}%
-            </p>
-
-            <p className="mt-1 text-xs text-gray-400">
-              Best job match from your analysis
-            </p>
-          </div>
-
-          {/* Matching Skills */}
-
-          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <div className="flex items-start justify-between">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-                <CheckCircle2 size={22} />
-              </div>
-
-              <TrendingUp
-                size={19}
-                className="text-emerald-500"
-              />
-            </div>
-
-            <p className="mt-7 text-sm text-gray-500">
-              Matching Skills
-            </p>
-
-            <p className="mt-1 text-3xl font-bold text-gray-900">
-              {matchingSkills.length}
-            </p>
-
-            <p className="mt-1 text-xs text-gray-400">
-              Skills already present in your profile
-            </p>
-          </div>
-
-          {/* Skill Gaps */}
-
-          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <div className="flex items-start justify-between">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50 text-orange-500">
-                <CircleAlert size={22} />
-              </div>
-
-              <span className="text-orange-500">!</span>
-            </div>
-
-            <p className="mt-7 text-sm text-gray-500">
-              Skill Gaps
-            </p>
-
-            <p className="mt-1 text-3xl font-bold text-gray-900">
-              {missingSkills.length}
-            </p>
-
-            <p className="mt-1 text-xs text-gray-400">
-              Skills recommended for development
-            </p>
-          </div>
-
-          {/* Growth */}
-
-          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-            <div className="flex items-start justify-between">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-                <TrendingUp size={22} />
-              </div>
-
-              <TrendingUp
-                size={19}
-                className="text-emerald-500"
-              />
-            </div>
-
-            <p className="mt-7 text-sm text-gray-500">
-              Growth Potential
-            </p>
-
-            <p className="mt-1 text-2xl font-bold text-gray-900">
-              {growthPotential}
-            </p>
-
-            <p className="mt-1 text-xs text-gray-400">
-              Career development potential
-            </p>
-          </div>
-        </section>
-
-        {/* CAREER MATCH + CAREER DNA */}
+        {/* =================================================
+            MATCH + DNA
+        ================================================= */}
 
         <section className="mt-6 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-          {/* Match Score */}
-
-          <div className="rounded-3xl border border-gray-100 bg-white p-7 shadow-sm">
+          {/* Match */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -20,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="rounded-[2rem] border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+          >
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm font-medium text-gray-400">
                   Career Match
                 </p>
 
-                <h2 className="mt-1 text-2xl font-bold text-gray-900">
+                <h2 className="mt-1 text-2xl font-black text-gray-950">
                   {targetRole}
                 </h2>
               </div>
 
-              <span className="rounded-full bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-600">
-                {growthPotential}
+              <span className="rounded-full bg-orange-50 px-3 py-1.5 text-xs font-bold text-orange-600">
+                {matchScore >= 70
+                  ? "Strong Match"
+                  : matchScore >= 50
+                    ? "Good Progress"
+                    : "Needs Improvement"}
               </span>
             </div>
 
-            <div className="mt-8 flex justify-center">
-              <div className="relative flex h-48 w-48 items-center justify-center rounded-full border-[16px] border-indigo-100">
-                <div className="text-center">
-                  <p className="text-4xl font-bold text-gray-900">
-                    {matchScore.toFixed(2)}%
+            <div className="mt-4 flex justify-center">
+              <MatchRing score={matchScore} />
+            </div>
+
+            <div className="rounded-2xl bg-gradient-to-r from-indigo-50 to-violet-50 p-5">
+              <div className="flex gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-indigo-600 shadow-sm">
+                  <Lightbulb size={19} />
+                </div>
+
+                <div>
+                  <p className="font-bold text-indigo-900">
+                    {matchScore >= 70
+                      ? "You are strongly aligned."
+                      : "There is room to grow."}
                   </p>
 
-                  <p className="mt-1 text-sm text-gray-400">
-                    Match Score
+                  <p className="mt-1 text-sm leading-6 text-indigo-600/80">
+                    Focus on your highest-priority skill
+                    gaps to improve your career alignment.
                   </p>
                 </div>
               </div>
             </div>
+          </motion.div>
 
-            <div className="mt-8 rounded-2xl bg-indigo-50 p-5">
-              <h3 className="font-bold text-indigo-700">
-                {matchScore >= 60
-                  ? "Strong foundation"
-                  : "There is room to grow"}
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-indigo-600">
-                {matchMessage}
-              </p>
-            </div>
-
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-gray-50 p-4">
-                <p className="text-xs text-gray-400">
-                  Your Skills
-                </p>
-
-                <p className="mt-1 text-xl font-bold text-gray-900">
-                  {totalSkills}
-                </p>
-              </div>
-
-              <div className="rounded-xl bg-gray-50 p-4">
-                <p className="text-xs text-gray-400">
-                  Skill Gaps
-                </p>
-
-                <p className="mt-1 text-xl font-bold text-gray-900">
-                  {missingSkills.length}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Career DNA */}
-
-          <div className="rounded-3xl border border-gray-100 bg-white p-7 shadow-sm">
+          {/* Radar */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="rounded-[2rem] border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+          >
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm font-medium text-gray-400">
                   Career DNA
                 </p>
 
-                <h2 className="mt-1 text-2xl font-bold text-gray-900">
+                <h2 className="mt-1 text-2xl font-black text-gray-950">
                   Your Skill Profile
                 </h2>
               </div>
 
-              <span className="rounded-full bg-indigo-50 px-4 py-2 text-xs font-semibold text-indigo-600">
-                {totalSkills} Skill Areas
+              <span className="rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-bold text-indigo-600">
+                {studentSkills.length} Skill Areas
               </span>
             </div>
 
-            <div className="mt-5 h-[310px] w-full">
+            <div className="mt-4 h-[320px]">
               <ResponsiveContainer
                 width="100%"
                 height="100%"
               >
-                <RadarChart data={radarData}>
-                  <PolarGrid />
+                <RadarChart
+                  data={radarData}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius="72%"
+                >
+                  <PolarGrid
+                    stroke="#E0E7FF"
+                  />
 
                   <PolarAngleAxis
                     dataKey="skill"
                     tick={{
-                      fill: "#6B7280",
+                      fill: "#64748B",
                       fontSize: 11,
                     }}
                   />
 
-                  <PolarRadiusAxis
-                    angle={30}
-                    domain={[0, 100]}
-                    tick={false}
-                    axisLine={false}
-                  />
-
                   <Radar
-                    name="Skill Presence"
+                    name="Your Skills"
                     dataKey="value"
-                    stroke="#4F46E5"
-                    fill="#6366F1"
+                    stroke="#6366F1"
+                    fill="#818CF8"
                     fillOpacity={0.25}
+                    strokeWidth={2}
                   />
                 </RadarChart>
               </ResponsiveContainer>
             </div>
 
             <p className="text-center text-xs text-gray-400">
-              Skill presence is based on skills extracted from
-              your resume.
+              Skill presence is based on skills extracted
+              from your resume.
             </p>
-          </div>
+          </motion.div>
         </section>
 
-        {/* ------------------------------------------------
-    HOW WE ANALYZED YOUR RESUME
------------------------------------------------- */}
-
-<section className="mt-6 rounded-3xl border border-gray-100 bg-white p-7 shadow-sm">
-
-  <div className="text-center">
-
-    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
-      <Sparkles size={22} />
-    </div>
-
-    <p className="mt-4 text-sm font-semibold text-indigo-600">
-      AI Analysis Journey
-    </p>
-
-    <h2 className="mt-1 text-2xl font-bold text-gray-900">
-      How We Analyzed Your Resume
-    </h2>
-
-    <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-gray-500">
-      Your resume was transformed into a career intelligence
-      profile by comparing your skills with real job-market
-      requirements.
-    </p>
-
-  </div>
-
-  <div className="mt-8 grid gap-4 md:grid-cols-4">
-
-    {/* STEP 1 */}
-
-    <div className="relative rounded-2xl border border-gray-100 bg-gray-50/70 p-5">
-
-      <div className="flex items-center justify-between">
-
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
-          <BookOpen size={20} />
-        </div>
-
-        <span className="text-xs font-bold text-indigo-400">
-          STEP 01
-        </span>
-
-      </div>
-
-      <h3 className="mt-5 font-bold text-gray-900">
-        Resume Analysis
-      </h3>
-
-      <p className="mt-2 text-sm leading-6 text-gray-500">
-        Your resume content was processed to identify
-        relevant career and technical information.
-      </p>
-
-    </div>
-
-    {/* STEP 2 */}
-
-    <div className="relative rounded-2xl border border-gray-100 bg-gray-50/70 p-5">
-
-      <div className="flex items-center justify-between">
-
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-          <CheckCircle2 size={20} />
-        </div>
-
-        <span className="text-xs font-bold text-emerald-400">
-          STEP 02
-        </span>
-
-      </div>
-
-      <h3 className="mt-5 font-bold text-gray-900">
-        Skills Extracted
-      </h3>
-
-      <p className="mt-2 text-sm leading-6 text-gray-500">
-        We identified{" "}
-        <strong className="text-gray-700">
-          {totalSkills} skills
-        </strong>{" "}
-        from your resume and created your current skill
-        profile.
-      </p>
-
-    </div>
-
-    {/* STEP 3 */}
-
-    <div className="relative rounded-2xl border border-gray-100 bg-gray-50/70 p-5">
-
-      <div className="flex items-center justify-between">
-
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
-          <Target size={20} />
-        </div>
-
-        <span className="text-xs font-bold text-purple-400">
-          STEP 03
-        </span>
-
-      </div>
-
-      <h3 className="mt-5 font-bold text-gray-900">
-        Job Market Comparison
-      </h3>
-
-      <p className="mt-2 text-sm leading-6 text-gray-500">
-        Your skills were compared with job requirements
-        related to{" "}
-        <strong className="text-gray-700">
-          {targetRole}
-        </strong>.
-      </p>
-
-    </div>
-
-    {/* STEP 4 */}
-
-    <div className="relative rounded-2xl border border-gray-100 bg-gray-50/70 p-5">
-
-      <div className="flex items-center justify-between">
-
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50 text-orange-600">
-          <TrendingUp size={20} />
-        </div>
-
-        <span className="text-xs font-bold text-orange-400">
-          STEP 04
-        </span>
-
-      </div>
-
-      <h3 className="mt-5 font-bold text-gray-900">
-        Career Roadmap
-      </h3>
-
-      <p className="mt-2 text-sm leading-6 text-gray-500">
-        We identified{" "}
-        <strong className="text-gray-700">
-          {missingSkills.length} skill gaps
-        </strong>{" "}
-        and prioritized what you should learn next.
-      </p>
-
-    </div>
-
-  </div>
-
-  {/* RESULT SUMMARY */}
-
-  <div className="mt-6 rounded-2xl bg-indigo-50 p-5">
-
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-
-      <div>
-
-        <p className="text-sm font-semibold text-indigo-700">
-          Analysis Complete
-        </p>
-
-        <p className="mt-1 text-sm text-indigo-600">
-          Your Career Genome is ready for the{" "}
-          {targetRole} career path.
-        </p>
-
-      </div>
-
-      <div className="flex flex-wrap gap-2">
-
-        <span className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-indigo-600">
-          {totalSkills} Skills
-        </span>
-
-        <span className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-orange-600">
-          {missingSkills.length} Gaps
-        </span>
-
-        <span className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-emerald-600">
-          {matchScore.toFixed(2)}% Match
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-        {/* MATCHING + MISSING */}
-
-        <section className="mt-6 grid gap-6 lg:grid-cols-2">
-
-          {/* Matching Skills */}
-
-          <div className="rounded-3xl border border-gray-100 bg-white p-7 shadow-sm">
+        {/* =================================================
+            HOW AI ANALYZED
+        ================================================= */}
+
+        <section className="mt-6 rounded-[2rem] border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
+          <SectionTitle
+            eyebrow="AI Analysis Journey"
+            title="How We Analyzed Your Resume"
+            description="Your resume moves through a structured intelligence pipeline before the career recommendations are generated."
+            icon={Sparkles}
+          />
+
+          <AnalysisPipeline />
+        </section>
+
+        {/* =================================================
+            MATCHING + GAPS
+        ================================================= */}
+
+        <section className="mt-6">
+          <SectionTitle
+            eyebrow="Skill Gap Intelligence"
+            title="See exactly what is missing"
+            description="The flow below connects your current skills to the target role and shows the highest-impact skills you should develop next."
+            icon={GitBranch}
+          />
+
+          <SkillGapFlow
+            matchingSkills={matchingSkills}
+            missingSkills={missingSkills}
+            targetRole={targetRole}
+          />
+
+          {/* Detailed skill gaps */}
+          <div className="mt-5 rounded-[2rem] border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
             <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm text-gray-500">
-                  Skills You Have
-                </p>
+              <SectionTitle
+                eyebrow="Detailed Gap Breakdown"
+                title="Skill-by-skill analysis"
+                description="Job-demand signals and priority are shown for every detected gap."
+                icon={CircleAlert}
+              />
 
-                <h2 className="mt-1 text-2xl font-bold text-gray-900">
-                  Matching Skills
-                </h2>
-              </div>
-
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-50 text-emerald-500">
-                <CheckCircle2 size={20} />
-              </div>
-            </div>
-
-            {matchingSkills.length > 0 ? (
-              <div className="mt-6 flex flex-wrap gap-2">
-                {matchingSkills.map((skill, index) => (
-                  <span
-                    key={`${skill}-${index}`}
-                    className="rounded-full bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-700"
-                  >
-                    {formatSkill(skill)}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <div className="mt-6 rounded-2xl bg-gray-50 p-6 text-center text-sm text-gray-500">
-                No matching skills found for this target role.
-              </div>
-            )}
-          </div>
-
-          {/* Missing Skills */}
-
-          <div className="rounded-3xl border border-gray-100 bg-white p-7 shadow-sm">
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-sm text-gray-500">
-                  Skills to Develop
-                </p>
-
-                <h2 className="mt-1 text-2xl font-bold text-gray-900">
-                  Your Skill Gaps
-                </h2>
-              </div>
-
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-50 text-orange-500">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-50 text-orange-600">
                 <CircleAlert size={20} />
               </div>
             </div>
 
-            {missingSkills.length > 0 ? (
-              <div className="mt-6 space-y-3">
-                {missingSkills.map((skill, index) => (
-                  <div
-                    key={`${skill.name}-${index}`}
-                    className="rounded-2xl border border-gray-100 p-4"
-                  >
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <p className="font-semibold text-gray-900">
-                          {skill.name}
-                        </p>
-
-                        <p className="mt-1 text-xs text-gray-400">
-                          Required by {skill.jobsRequired} jobs
-                        </p>
-                      </div>
-
-                      <span
-                        className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                          skill.priority === "HIGH"
-                            ? "bg-red-50 text-red-600"
-                            : skill.priority === "MEDIUM"
-                            ? "bg-orange-50 text-orange-600"
-                            : "bg-gray-100 text-gray-600"
-                        }`}
-                      >
-                        {skill.priority}
-                      </span>
-                    </div>
-
-                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-gray-100">
-                      <div
-                        className="h-full rounded-full bg-orange-400"
-                        style={{
-                          width: `${Math.min(
-                            skill.demandPercentage,
-                            100
-                          )}%`,
-                        }}
-                      />
-                    </div>
-
-                    <p className="mt-2 text-xs text-gray-400">
-                      {skill.demandPercentage.toFixed(2)}%
-                      {" "}job demand
-                    </p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="mt-6 rounded-2xl bg-gray-50 p-6 text-center text-sm text-gray-500">
-                No skill gaps detected for this target role.
-              </div>
-            )}
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {missingSkills.length > 0 ? (
+                missingSkills.map((skill, index) => (
+                  <SkillGapCard
+                    key={`${skill.skill_name}-${index}`}
+                    skill={skill}
+                  />
+                ))
+              ) : (
+                <div className="rounded-2xl bg-emerald-50 p-5 text-sm font-medium text-emerald-700 sm:col-span-2 lg:col-span-3">
+                  Great! No major skill gaps were returned for this target role.
+                </div>
+              )}
+            </div>
           </div>
         </section>
 
-        {/* ------------------------------------------------
-            RECOMMENDED LEARNING ROADMAP
-        ------------------------------------------------ */}
+        {/* =================================================
+            ROADMAP
+        ================================================= */}
 
-        <section className="mt-6 rounded-3xl border border-gray-100 bg-white p-7 shadow-sm">
-
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-
-            <div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-indigo-600">
-                <GraduationCap size={18} />
-                Recommended Roadmap
-              </div>
-
-              <h2 className="mt-1 text-2xl font-bold text-gray-900">
-                What You Should Learn Next
-              </h2>
-
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-500">
-                Your learning path is prioritized using the
-                skills missing from your profile and their
-                demand in the analyzed job market.
-              </p>
-            </div>
+        <section className="mt-6 rounded-[2rem] border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
+          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <SectionTitle
+              eyebrow="Recommended Roadmap"
+              title="What You Should Learn Next"
+              description="A prioritized learning sequence generated from your current skill gaps and job-demand signals."
+              icon={GraduationCap}
+            />
 
             <Link
               to="/analyze"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition hover:text-indigo-700"
+              className="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 transition hover:text-indigo-700"
             >
               Analyze Again
-              <ArrowUpRight size={17} />
+              <ArrowRight size={16} />
             </Link>
-
           </div>
 
-          {learningRoadmap.length > 0 ? (
+          <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_0.8fr]">
+            {/* Timeline */}
+            <div>
+              {roadmap.length > 0 ? (
+                roadmap.map((item, index) => (
+                  <RoadmapCard
+                    key={`${item.skill_name}-${index}`}
+                    item={item}
+                    index={index}
+                  />
+                ))
+              ) : (
+                <div className="rounded-2xl bg-gray-50 p-8 text-center text-sm text-gray-500">
+                  No learning recommendations were
+                  returned for this analysis.
+                </div>
+              )}
+            </div>
 
-            <div className="relative mt-8">
+            {/* Roadmap Visual */}
+            <div className="hidden lg:block">
+              <div className="sticky top-28 overflow-hidden rounded-[2rem] border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-violet-100/60 p-7">
+                <motion.div
+                  className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-violet-300/30 blur-3xl"
+                  animate={{
+                    scale: [0.8, 1.15, 0.8],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                  }}
+                />
 
-              {/* Timeline line */}
-
-              <div className="absolute bottom-8 left-[21px] top-8 hidden w-px bg-indigo-100 md:block" />
-
-              <div className="space-y-5">
-
-                {learningRoadmap.map((skill) => (
-
-                  <div
-                    key={`${skill.name}-${skill.step}`}
-                    className="relative flex flex-col gap-4 md:flex-row"
-                  >
-
-                    {/* Step */}
-
-                    <div className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white shadow-sm">
-                      {skill.step}
-                    </div>
-
-                    {/* Card */}
-
-                    <div className="flex-1 rounded-2xl border border-gray-100 bg-gray-50/70 p-5 transition hover:border-indigo-100 hover:bg-white hover:shadow-sm">
-
-                      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-
-                        <div className="min-w-0">
-
-                          <div className="flex flex-wrap items-center gap-2">
-
-                            <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-600">
-                              {skill.phase}
-                            </span>
-
-                            <span
-                              className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                                skill.priority === "HIGH"
-                                  ? "bg-red-50 text-red-600"
-                                  : skill.priority === "MEDIUM"
-                                  ? "bg-orange-50 text-orange-600"
-                                  : "bg-gray-100 text-gray-600"
-                              }`}
-                            >
-                              {skill.priority} PRIORITY
-                            </span>
-
-                          </div>
-
-                          <h3 className="mt-3 text-xl font-bold text-gray-900">
-                            {skill.name}
-                          </h3>
-
-                          <p className="mt-2 text-sm leading-6 text-gray-500">
-                            {skill.reason}
-                          </p>
-
-                        </div>
-
-                        <div className="shrink-0 rounded-xl bg-white px-4 py-3 shadow-sm">
-
-                          <p className="text-xs text-gray-400">
-                            Job Demand
-                          </p>
-
-                          <p className="mt-1 text-lg font-bold text-gray-900">
-                            {skill.demandPercentage.toFixed(2)}%
-                          </p>
-
-                          <p className="mt-1 text-xs text-gray-400">
-                            {skill.jobsRequired} jobs
-                          </p>
-
-                        </div>
-
-                      </div>
-
-                      {/* Demand bar */}
-
-                      <div className="mt-5">
-
-                        <div className="mb-2 flex items-center justify-between text-xs">
-                          <span className="font-medium text-gray-500">
-                            Market relevance
-                          </span>
-
-                          <span className="font-semibold text-indigo-600">
-                            {skill.demandPercentage.toFixed(2)}%
-                          </span>
-                        </div>
-
-                        <div className="h-2 overflow-hidden rounded-full bg-gray-200">
-
-                          <div
-                            className="h-full rounded-full bg-indigo-500 transition-all"
-                            style={{
-                              width: `${Math.min(
-                                skill.demandPercentage,
-                                100
-                              )}%`,
-                            }}
-                          />
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
+                <div className="relative">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-200">
+                    <GitBranch size={25} />
                   </div>
 
-                ))}
+                  <h3 className="mt-6 text-2xl font-black text-gray-950">
+                    Build your next version.
+                  </h3>
 
+                  <p className="mt-3 text-sm leading-6 text-gray-500">
+                    Your roadmap turns the skill-gap analysis
+                    into a practical sequence of areas to
+                    strengthen.
+                  </p>
+
+                  <div className="mt-7 space-y-3">
+                    {roadmap.slice(0, 4).map(
+                      (item, index) => (
+                        <motion.div
+                          key={`${item.skill_name}-visual`}
+                          initial={{
+                            opacity: 0,
+                            x: 15,
+                          }}
+                          whileInView={{
+                            opacity: 1,
+                            x: 0,
+                          }}
+                          viewport={{
+                            once: true,
+                          }}
+                          transition={{
+                            delay: index * 0.1,
+                          }}
+                          className="flex items-center gap-3 rounded-2xl border border-white bg-white/70 p-3 backdrop-blur"
+                        >
+                          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-50 text-xs font-black text-indigo-600">
+                            {index + 1}
+                          </div>
+
+                          <span className="text-sm font-semibold text-gray-800">
+                            {formatSkill(
+                              item.skill_name
+                            )}
+                          </span>
+                        </motion.div>
+                      )
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
-
-          ) : (
-
-            <div className="mt-7 rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-10 text-center">
-
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
-                <Sparkles size={24} />
-              </div>
-
-              <h3 className="mt-4 font-semibold text-gray-900">
-                Your profile is already well aligned
-              </h3>
-
-              <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-gray-500">
-                No major skill gaps were identified for this
-                target role. Keep strengthening the skills
-                already present in your profile.
-              </p>
-
-            </div>
-
-          )}
-
+          </div>
         </section>
 
-        {/* ------------------------------------------------
+        {/* =================================================
             CAREER OPPORTUNITIES
-        ------------------------------------------------ */}
+        ================================================= */}
 
-        <section className="mt-6 rounded-3xl border border-gray-100 bg-white p-7 shadow-sm">
+        <section className="mt-8">
+          <div className="rounded-[2rem] border border-indigo-100 bg-gradient-to-r from-white via-indigo-50/40 to-violet-50/50 p-6 shadow-sm sm:p-8">
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <SectionTitle
+                eyebrow="Career Opportunities"
+                title="Roles That Match Your Genome"
+                description="These recommendations come directly from the job-matching analysis and are ranked by your current skill alignment."
+                icon={BriefcaseBusiness}
+              />
 
-          <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-bold text-indigo-600 shadow-sm">
+                <BriefcaseBusiness size={14} />
+                {recommendations.length} roles found
+              </div>
+            </div>
 
-            <div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-indigo-600">
-                <BriefcaseBusiness size={18} />
+            <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {recommendations.length > 0 ? (
+                recommendations.slice(0, 10).map((job, index) => (
+                  <JobCard
+                    key={`${job.job_id || job.job_title}-${index}`}
+                    job={job}
+                    index={index}
+                  />
+                ))
+              ) : (
+                <div className="rounded-3xl border border-orange-100 bg-orange-50 p-8 text-sm font-medium text-orange-700 md:col-span-2 lg:col-span-3">
+                  No career recommendations were returned for this analysis.
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* =================================================
+            FINAL CTA
+        ================================================= */}
+
+        <motion.section
+          initial={{
+            opacity: 0,
+            scale: 0.98,
+          }}
+          whileInView={{
+            opacity: 1,
+            scale: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          className="relative mt-8 overflow-hidden rounded-[2rem] bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 p-8 text-white shadow-2xl shadow-indigo-200 sm:p-10"
+        >
+          {/* Decorative circles */}
+          <motion.div
+            className="absolute -right-20 -top-20 h-64 w-64 rounded-full border border-white/10"
+            animate={{
+              rotate: 360,
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+
+          <motion.div
+            className="absolute -bottom-32 right-32 h-72 w-72 rounded-full border border-white/10"
+            animate={{
+              rotate: -360,
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+
+          <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 text-sm font-semibold text-indigo-100">
+                <Sparkles size={16} />
                 Career Opportunities
               </div>
 
-              <h2 className="mt-1 text-2xl font-bold text-gray-900">
-                Roles You Could Target
-              </h2>
-
-              <p className="mt-2 text-sm text-gray-500">
-                These roles are recommended based on your
-                current skill profile and job-market matching.
-              </p>
-            </div>
-
-          </div>
-
-          {recommendations.length > 0 ? (
-
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
-
-              {recommendations.map((job, index) => (
-
-                <div
-                  key={`${job.title}-${index}`}
-                  className="rounded-2xl border border-gray-100 p-5 transition hover:-translate-y-0.5 hover:shadow-sm"
-                >
-
-                  <div className="flex items-start gap-4">
-
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
-                      <BriefcaseBusiness size={20} />
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-
-                      <div className="flex flex-wrap items-center gap-2">
-
-                        <span className="text-xs font-semibold text-indigo-500">
-                          #{job.rank || index + 1}
-                        </span>
-
-                        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-600">
-                          {job.jobMatch.toFixed(2)}% match
-                        </span>
-
-                      </div>
-
-                      <h3 className="mt-2 font-bold text-gray-900">
-                        {job.title}
-                      </h3>
-
-                      <p className="mt-1 text-sm text-gray-500">
-                        Skill gap: {job.skillGap.toFixed(2)}%
-                      </p>
-
-                    </div>
-                  </div>
-
-                  {job.matchingSkills.length > 0 && (
-                    <div className="mt-4">
-
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
-                        Matching Skills
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-
-                        {job.matchingSkills
-                          .slice(0, 6)
-                          .map((skill, skillIndex) => (
-
-                            <span
-                              key={`${skill}-${skillIndex}`}
-                              className="rounded-full bg-gray-50 px-2.5 py-1 text-xs text-gray-600"
-                            >
-                              {formatSkill(skill)}
-                            </span>
-
-                          ))}
-
-                      </div>
-                    </div>
-                  )}
-
-                  {job.missingSkills.length > 0 && (
-                    <div className="mt-4">
-
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
-                        Skills to Develop
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-
-                        {job.missingSkills
-                          .slice(0, 5)
-                          .map((skill, skillIndex) => (
-
-                            <span
-                              key={`${skill}-${skillIndex}`}
-                              className="rounded-full bg-orange-50 px-2.5 py-1 text-xs text-orange-600"
-                            >
-                              {formatSkill(skill)}
-                            </span>
-
-                          ))}
-
-                      </div>
-                    </div>
-                  )}
-
-                </div>
-
-              ))}
-
-            </div>
-
-          ) : (
-
-            <div className="mt-6 rounded-2xl bg-gray-50 p-8 text-center text-sm text-gray-500">
-              No career recommendations were returned for this analysis.
-            </div>
-
-          )}
-
-        </section>
-
-        {/* FINAL CTA */}
-
-        <section className="mt-6 overflow-hidden rounded-3xl bg-indigo-600 p-8 text-white shadow-sm sm:p-10">
-
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-
-            <div className="max-w-3xl">
-
-              <div className="flex items-center gap-2 text-indigo-100">
-
-                <BriefcaseBusiness size={19} />
-
-                <span className="text-sm font-semibold">
-                  Keep Building
-                </span>
-
-              </div>
-
-              <h2 className="mt-5 text-3xl font-bold sm:text-4xl">
+              <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">
                 You're closer than you think.
               </h2>
 
-              <p className="mt-4 text-base leading-7 text-indigo-100">
-                Based on your current skill profile, you can
-                continue building toward opportunities related
-                to the{" "}
-                <strong className="text-white">
-                  {targetRole}
+              <p className="mt-3 text-sm leading-7 text-indigo-100 sm:text-base">
+                Your current profile already contains{" "}
+                <strong>
+                  {matchingSkills.length}
                 </strong>{" "}
-                career path.
+                matching skills. Strengthen the right
+                missing skills and keep building toward
+                your {targetRole} career path.
               </p>
-
             </div>
 
             <Link
               to="/analyze"
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-indigo-600 transition hover:bg-indigo-50"
+              className="group inline-flex shrink-0 items-center gap-2 rounded-2xl bg-white px-6 py-3.5 font-bold text-indigo-600 shadow-xl transition hover:bg-indigo-50"
             >
               Analyze Again
-              <ArrowUpRight size={18} />
+              <ArrowRight
+                size={18}
+                className="transition group-hover:translate-x-1"
+              />
             </Link>
-
           </div>
+        </motion.section>
 
-        </section>
-
-        {/* FOOTER INFO */}
-
-        <div className="mt-8 flex flex-col items-center justify-center gap-2 pb-8 text-center text-xs text-gray-400 sm:flex-row">
-
-          <BookOpen size={14} />
-
-          <span>
-            Career insights generated from your resume and
-            job-market skill data.
-          </span>
-
-        </div>
-
+        {/* Bottom spacing */}
+        <div className="h-8" />
       </div>
     </main>
   );

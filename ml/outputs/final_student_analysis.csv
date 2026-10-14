@@ -1,0 +1,63 @@
+type,rank,name,match_percentage,skill_gap_percentage,details
+job_recommendation,1,AI Engineer,41.67,58.33,ai engineer | clean code | coding | coding standards | data manipulation | libraries | python
+job_recommendation,2,AI Engineer,37.5,62.5,ai engineer | artificial intelligence | aws | git version control | learning | libraries | machine | python | pytorch | version control
+job_recommendation,3,AI Engineer,33.33,66.67,ai engineer | data manipulation | libraries | python | pytorch | tensorflow
+job_recommendation,4,SENIOR AI ENGINEER - DEVELOPER,25.0,75.0,ai engineer | azure | azure app service | azure functions | azure sql | azure storage | cloud platforms | cosmos | cosmos db | genai | llms | oracle | postgresql | server | sql server
+job_recommendation,5,SENIOR AI ENGINEER - DEVELOPER,25.0,75.0,ai engineer | azure | azure sql | cloud platforms | cosmos | cosmos db | genai | llms | oracle | postgresql | server | sql server
+job_recommendation,6,AI Engineering / Research Intern,15.79,84.21,academic | ai engineering | algebra | algorithms | artificial intelligence | aws | azure | cloud platforms | computer vision | conducting | current | cutting | detail-oriented | edge | foundation | frameworks | generative ai | google | ideas | innovative | interest | internship | latex | learning | linear algebra | literature | llms | machine | mathematics | matlab | methods | modeling | optimization | optimization techniques | presentations | primary | processing | prototypes | publications | pursuing | python | pytorch | reinforcement | reinforcement learning | research | research and development | technical reports | writing
+job_recommendation,7,AI Engineer (RAG & Agentic Applications),15.79,84.21,agentic | agentic ai | ai engineer | apis | artificial intelligence | claude | grade | hugging face | learning | libraries | machine | openai | python | pytorch | solution | tensorflow
+job_recommendation,8,Specialist Data/AI Engineering,13.33,86.67,ai engineering | architecting | azure | azure devops | cluster | cluster management | core frameworks | devops | frameworks | job scheduling | performance tuning | scheduling | tuning
+job_recommendation,9,Senior Gen AI Engineer,11.76,88.24,agents | ai engineer | expert | gen ai | generative ai | langchain | langgraph | learning | llms | machine | machine learning models | prompt | prompt engineering | python | roadmap
+job_recommendation,10,GenAI Engineer,11.11,88.89,ai / ml | frameworks | genai | libraries | llms | ml frameworks | python | transformers
+missing_skill,,python,,,13
+missing_skill,,azure,,,6
+missing_skill,,aws,,,4
+missing_skill,,artificial intelligence,,,3
+missing_skill,,deep learning,,,3
+missing_skill,,postgresql,,,2
+missing_skill,,oracle,,,2
+missing_skill,,sql server,,,2
+missing_skill,,natural language processing,,,2
+missing_skill,,mathematics,,,1
+missing_skill,,research,,,1
+missing_skill,,data management,,,1
+missing_skill,,javascript,,,1
+target_role_matched_skill,,machine learning,30.77,,ALREADY HAVE
+target_role_matched_skill,,data science,30.77,,ALREADY HAVE
+target_role_matched_skill,,sql,30.77,,ALREADY HAVE
+target_role_matched_skill,,databases,30.77,,ALREADY HAVE
+target_role_matched_skill,,statistics,30.77,,ALREADY HAVE
+target_role_matched_skill,,pandas,30.77,,ALREADY HAVE
+target_role_matched_skill,,numpy,30.77,,ALREADY HAVE
+target_role_matched_skill,,mongodb,30.77,,ALREADY HAVE
+target_role_matched_skill,,mysql,30.77,,ALREADY HAVE
+target_role_matched_skill,,excel,30.77,,ALREADY HAVE
+target_role_matched_skill,,matplotlib,30.77,,ALREADY HAVE
+target_role_matched_skill,,c++,30.77,,ALREADY HAVE
+target_role_missing_skill,,python,30.77,,MEDIUM
+target_role_missing_skill,,azure,30.77,,MEDIUM
+target_role_missing_skill,,aws,30.77,,LOW
+target_role_missing_skill,,research,30.77,,LOW
+target_role_missing_skill,,deep learning,30.77,,LOW
+target_role_missing_skill,,artificial intelligence,30.77,,LOW
+target_role_missing_skill,,nlp,30.77,,LOW
+target_role_missing_skill,,javascript,30.77,,LOW
+target_role_missing_skill,,postgresql,30.77,,LOW
+target_role_missing_skill,,sql server,30.77,,LOW
+target_role_missing_skill,,java,30.77,,LOW
+target_role_missing_skill,,presentation,30.77,,LOW
+target_role_missing_skill,,project management,30.77,,LOW
+target_role_missing_skill,,data analysis,30.77,,ALREADY HAVE
+target_role_missing_skill,,mathematics,30.77,,LOW
+target_role_missing_skill,,typescript,30.77,,LOW
+target_role_missing_skill,,problem solving,30.77,,LOW
+target_role_missing_skill,,database,30.77,,LOW
+target_role_missing_skill,,oracle,30.77,,LOW
+target_role_missing_skill,,data management,30.77,,LOW
+target_role_missing_skill,,etl,30.77,,LOW
+target_role_missing_skill,,dashboards,30.77,,LOW
+target_role_missing_skill,,hadoop,30.77,,LOW
+target_role_missing_skill,,forecasting,30.77,,LOW
+target_role_missing_skill,,apache spark,30.77,,LOW
+target_role_missing_skill,,business intelligence,30.77,,LOW
+target_role_missing_skill,,data modeling,30.77,,LOW

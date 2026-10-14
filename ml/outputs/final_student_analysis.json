@@ -1,0 +1,721 @@
+{
+    "student_profile": {
+        "total_skills": 84,
+        "skills": [
+            "Analytical and Problem-Solving Skills",
+            "API",
+            "Assets",
+            "Benchmark",
+            "Big Data Analytics",
+            "blue",
+            "C++",
+            "Canva",
+            "Cards",
+            "Certified",
+            "Charts",
+            "Classical",
+            "Cleaning",
+            "College",
+            "Command",
+            "Content Writing",
+            "Core Java",
+            "Crud",
+            "Dashboard Development",
+            "Data & Visualization",
+            "Data Analyst",
+            "Data Exploration",
+            "Data Mining",
+            "Data Science",
+            "Data Visualization",
+            "Data Warehousing",
+            "Databases",
+            "ENGLISH MEDIUM",
+            "EVENT",
+            "Excel",
+            "Expense Analysis",
+            "Features",
+            "Filters",
+            "Financial & Data Analysis",
+            "Financial Data Analysis",
+            "Fintech",
+            "Food",
+            "Fundamentals",
+            "Gemini",
+            "Git",
+            "GitHub",
+            "gymnastics",
+            "History",
+            "Indian",
+            "Jupyter Notebook",
+            "KPI",
+            "Line",
+            "LinkedIn",
+            "Logistic Regression",
+            "Machine Learning",
+            "Maharashtra",
+            "market data",
+            "Matplotlib",
+            "MongoDB",
+            "Music",
+            "Mutual Fund",
+            "MySQL",
+            "Nashik",
+            "News",
+            "NumPy",
+            "Operations head",
+            "organized",
+            "Page",
+            "Pandas",
+            "Personal",
+            "POSTMAN",
+            "Python Data",
+            "School",
+            "Scikit-learn",
+            "SITA",
+            "SPSS",
+            "SQL",
+            "Statistics",
+            "Stock",
+            "STORAGE",
+            "Streamlit",
+            "student",
+            "Tech Stack",
+            "Technical Skills",
+            "Trust",
+            "university",
+            "visualizations",
+            "VS Code",
+            "Wise"
+        ]
+    },
+    "overall_analysis": {
+        "jobs_analyzed": 28,
+        "best_job_match_percentage": 41.67,
+        "average_job_match_percentage": 8.98,
+        "average_skill_gap_percentage": 91.02
+    },
+    "top_job_recommendations": [
+        {
+            "rank": 1,
+            "job_id": "31025012164",
+            "job_title": "AI Engineer",
+            "matching_skill_count": 5,
+            "job_match_percentage": 41.67,
+            "skill_gap_percentage": 58.33,
+            "matching_skills": [
+                "databases",
+                "matplotlib",
+                "numpy",
+                "pandas",
+                "sql"
+            ],
+            "missing_skills": [
+                "ai engineer",
+                "clean code",
+                "coding",
+                "coding standards",
+                "data manipulation",
+                "libraries",
+                "python"
+            ]
+        },
+        {
+            "rank": 2,
+            "job_id": "31025502666",
+            "job_title": "AI Engineer",
+            "matching_skill_count": 6,
+            "job_match_percentage": 37.5,
+            "skill_gap_percentage": 62.5,
+            "matching_skills": [
+                "data science",
+                "git",
+                "machine learning",
+                "pandas",
+                "scikit-learn",
+                "storage"
+            ],
+            "missing_skills": [
+                "ai engineer",
+                "artificial intelligence",
+                "aws",
+                "git version control",
+                "learning",
+                "libraries",
+                "machine",
+                "python",
+                "pytorch",
+                "version control"
+            ]
+        },
+        {
+            "rank": 3,
+            "job_id": "31025503024",
+            "job_title": "AI Engineer",
+            "matching_skill_count": 3,
+            "job_match_percentage": 33.33,
+            "skill_gap_percentage": 66.67,
+            "matching_skills": [
+                "numpy",
+                "pandas",
+                "scikit-learn"
+            ],
+            "missing_skills": [
+                "ai engineer",
+                "data manipulation",
+                "libraries",
+                "python",
+                "pytorch",
+                "tensorflow"
+            ]
+        },
+        {
+            "rank": 4,
+            "job_id": "11025013090",
+            "job_title": "SENIOR AI ENGINEER - DEVELOPER",
+            "matching_skill_count": 5,
+            "job_match_percentage": 25.0,
+            "skill_gap_percentage": 75.0,
+            "matching_skills": [
+                "databases",
+                "mongodb",
+                "mysql",
+                "sql",
+                "storage"
+            ],
+            "missing_skills": [
+                "ai engineer",
+                "azure",
+                "azure app service",
+                "azure functions",
+                "azure sql",
+                "azure storage",
+                "cloud platforms",
+                "cosmos",
+                "cosmos db",
+                "genai",
+                "llms",
+                "oracle",
+                "postgresql",
+                "server",
+                "sql server"
+            ]
+        },
+        {
+            "rank": 5,
+            "job_id": "11025013137",
+            "job_title": "SENIOR AI ENGINEER - DEVELOPER",
+            "matching_skill_count": 4,
+            "job_match_percentage": 25.0,
+            "skill_gap_percentage": 75.0,
+            "matching_skills": [
+                "databases",
+                "mongodb",
+                "mysql",
+                "sql"
+            ],
+            "missing_skills": [
+                "ai engineer",
+                "azure",
+                "azure sql",
+                "cloud platforms",
+                "cosmos",
+                "cosmos db",
+                "genai",
+                "llms",
+                "oracle",
+                "postgresql",
+                "server",
+                "sql server"
+            ]
+        },
+        {
+            "rank": 6,
+            "job_id": "31025503445",
+            "job_title": "AI Engineering / Research Intern",
+            "matching_skill_count": 9,
+            "job_match_percentage": 15.79,
+            "skill_gap_percentage": 84.21,
+            "matching_skills": [
+                "data analysis",
+                "data science",
+                "machine learning",
+                "matplotlib",
+                "numpy",
+                "pandas",
+                "personal",
+                "scikit-learn",
+                "statistics"
+            ],
+            "missing_skills": [
+                "academic",
+                "ai engineering",
+                "algebra",
+                "algorithms",
+                "artificial intelligence",
+                "aws",
+                "azure",
+                "cloud platforms",
+                "computer vision",
+                "conducting",
+                "current",
+                "cutting",
+                "detail-oriented",
+                "edge",
+                "foundation",
+                "frameworks",
+                "generative ai",
+                "google",
+                "ideas",
+                "innovative",
+                "interest",
+                "internship",
+                "latex",
+                "learning",
+                "linear algebra",
+                "literature",
+                "llms",
+                "machine",
+                "mathematics",
+                "matlab",
+                "methods",
+                "modeling",
+                "optimization",
+                "optimization techniques",
+                "presentations",
+                "primary",
+                "processing",
+                "prototypes",
+                "publications",
+                "pursuing",
+                "python",
+                "pytorch",
+                "reinforcement",
+                "reinforcement learning",
+                "research",
+                "research and development",
+                "technical reports",
+                "writing"
+            ]
+        },
+        {
+            "rank": 7,
+            "job_id": "11025913078",
+            "job_title": "AI Engineer (RAG & Agentic Applications)",
+            "matching_skill_count": 3,
+            "job_match_percentage": 15.79,
+            "skill_gap_percentage": 84.21,
+            "matching_skills": [
+                "gemini",
+                "machine learning",
+                "scikit-learn"
+            ],
+            "missing_skills": [
+                "agentic",
+                "agentic ai",
+                "ai engineer",
+                "apis",
+                "artificial intelligence",
+                "claude",
+                "grade",
+                "hugging face",
+                "learning",
+                "libraries",
+                "machine",
+                "openai",
+                "python",
+                "pytorch",
+                "solution",
+                "tensorflow"
+            ]
+        },
+        {
+            "rank": 8,
+            "job_id": "11025502347",
+            "job_title": "Specialist Data/AI Engineering",
+            "matching_skill_count": 2,
+            "job_match_percentage": 13.33,
+            "skill_gap_percentage": 86.67,
+            "matching_skills": [
+                "git",
+                "github"
+            ],
+            "missing_skills": [
+                "ai engineering",
+                "architecting",
+                "azure",
+                "azure devops",
+                "cluster",
+                "cluster management",
+                "core frameworks",
+                "devops",
+                "frameworks",
+                "job scheduling",
+                "performance tuning",
+                "scheduling",
+                "tuning"
+            ]
+        },
+        {
+            "rank": 9,
+            "job_id": "50825018820",
+            "job_title": "Senior Gen AI Engineer",
+            "matching_skill_count": 2,
+            "job_match_percentage": 11.76,
+            "skill_gap_percentage": 88.24,
+            "matching_skills": [
+                "machine learning",
+                "sql"
+            ],
+            "missing_skills": [
+                "agents",
+                "ai engineer",
+                "expert",
+                "gen ai",
+                "generative ai",
+                "langchain",
+                "langgraph",
+                "learning",
+                "llms",
+                "machine",
+                "machine learning models",
+                "prompt",
+                "prompt engineering",
+                "python",
+                "roadmap"
+            ]
+        },
+        {
+            "rank": 10,
+            "job_id": "31025917919",
+            "job_title": "GenAI Engineer",
+            "matching_skill_count": 1,
+            "job_match_percentage": 11.11,
+            "skill_gap_percentage": 88.89,
+            "matching_skills": [
+                "data science"
+            ],
+            "missing_skills": [
+                "ai / ml",
+                "frameworks",
+                "genai",
+                "libraries",
+                "llms",
+                "ml frameworks",
+                "python",
+                "transformers"
+            ]
+        }
+    ],
+    "top_missing_skills": [
+        {
+            "skill_name": "python",
+            "jobs_requiring_skill": 13,
+            "demand_percentage": 46.43
+        },
+        {
+            "skill_name": "azure",
+            "jobs_requiring_skill": 6,
+            "demand_percentage": 21.43
+        },
+        {
+            "skill_name": "aws",
+            "jobs_requiring_skill": 4,
+            "demand_percentage": 14.29
+        },
+        {
+            "skill_name": "artificial intelligence",
+            "jobs_requiring_skill": 3,
+            "demand_percentage": 10.71
+        },
+        {
+            "skill_name": "deep learning",
+            "jobs_requiring_skill": 3,
+            "demand_percentage": 10.71
+        },
+        {
+            "skill_name": "postgresql",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 7.14
+        },
+        {
+            "skill_name": "oracle",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 7.14
+        },
+        {
+            "skill_name": "sql server",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 7.14
+        },
+        {
+            "skill_name": "natural language processing",
+            "jobs_requiring_skill": 2,
+            "demand_percentage": 7.14
+        },
+        {
+            "skill_name": "mathematics",
+            "jobs_requiring_skill": 1,
+            "demand_percentage": 3.57
+        },
+        {
+            "skill_name": "research",
+            "jobs_requiring_skill": 1,
+            "demand_percentage": 3.57
+        },
+        {
+            "skill_name": "data management",
+            "jobs_requiring_skill": 1,
+            "demand_percentage": 3.57
+        },
+        {
+            "skill_name": "javascript",
+            "jobs_requiring_skill": 1,
+            "demand_percentage": 3.57
+        }
+    ],
+    "target_role_analysis": {
+        "target_role": "AI engineer",
+        "total_required_skills": 39,
+        "matched_skill_count": 12,
+        "matched_skills": [
+            {
+                "skill_name": "machine learning",
+                "jobs_requiring_skill": 22,
+                "demand_percentage": 10.28,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "data science",
+                "jobs_requiring_skill": 14,
+                "demand_percentage": 6.54,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "sql",
+                "jobs_requiring_skill": 11,
+                "demand_percentage": 5.14,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "databases",
+                "jobs_requiring_skill": 10,
+                "demand_percentage": 4.67,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "statistics",
+                "jobs_requiring_skill": 7,
+                "demand_percentage": 3.27,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "pandas",
+                "jobs_requiring_skill": 5,
+                "demand_percentage": 2.34,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "numpy",
+                "jobs_requiring_skill": 4,
+                "demand_percentage": 1.87,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "mongodb",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 1.4,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "mysql",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 1.4,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "excel",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 0.93,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "matplotlib",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 0.93,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "c++",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 0.93,
+                "priority": "ALREADY HAVE"
+            }
+        ],
+        "missing_skill_count": 27,
+        "missing_skills": [
+            {
+                "skill_name": "python",
+                "jobs_requiring_skill": 42,
+                "demand_percentage": 19.63,
+                "priority": "MEDIUM"
+            },
+            {
+                "skill_name": "azure",
+                "jobs_requiring_skill": 22,
+                "demand_percentage": 10.28,
+                "priority": "MEDIUM"
+            },
+            {
+                "skill_name": "aws",
+                "jobs_requiring_skill": 19,
+                "demand_percentage": 8.88,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "research",
+                "jobs_requiring_skill": 12,
+                "demand_percentage": 5.61,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "deep learning",
+                "jobs_requiring_skill": 8,
+                "demand_percentage": 3.74,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "artificial intelligence",
+                "jobs_requiring_skill": 8,
+                "demand_percentage": 3.74,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "nlp",
+                "jobs_requiring_skill": 6,
+                "demand_percentage": 2.8,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "javascript",
+                "jobs_requiring_skill": 6,
+                "demand_percentage": 2.8,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "postgresql",
+                "jobs_requiring_skill": 4,
+                "demand_percentage": 1.87,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "sql server",
+                "jobs_requiring_skill": 4,
+                "demand_percentage": 1.87,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "java",
+                "jobs_requiring_skill": 4,
+                "demand_percentage": 1.87,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "presentation",
+                "jobs_requiring_skill": 4,
+                "demand_percentage": 1.87,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "project management",
+                "jobs_requiring_skill": 4,
+                "demand_percentage": 1.87,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "data analysis",
+                "jobs_requiring_skill": 4,
+                "demand_percentage": 1.87,
+                "priority": "ALREADY HAVE"
+            },
+            {
+                "skill_name": "mathematics",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 1.4,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "typescript",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 1.4,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "problem solving",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 1.4,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "database",
+                "jobs_requiring_skill": 3,
+                "demand_percentage": 1.4,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "oracle",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 0.93,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "data management",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 0.93,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "etl",
+                "jobs_requiring_skill": 2,
+                "demand_percentage": 0.93,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "dashboards",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 0.47,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "hadoop",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 0.47,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "forecasting",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 0.47,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "apache spark",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 0.47,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "business intelligence",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 0.47,
+                "priority": "LOW"
+            },
+            {
+                "skill_name": "data modeling",
+                "jobs_requiring_skill": 1,
+                "demand_percentage": 0.47,
+                "priority": "LOW"
+            }
+        ],
+        "match_percentage": 30.77
+    }
+}

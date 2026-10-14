@@ -1,0 +1,40 @@
+target_role,skill_name,jobs_requiring_skill,matching_jobs,missing_jobs,demand_percentage,student_has_skill,priority
+AI engineer,python,42,0,42,19.63,No,MEDIUM
+AI engineer,azure,22,0,22,10.28,No,MEDIUM
+AI engineer,aws,19,0,19,8.88,No,LOW
+AI engineer,research,12,0,12,5.61,No,LOW
+AI engineer,deep learning,8,0,8,3.74,No,LOW
+AI engineer,artificial intelligence,8,0,8,3.74,No,LOW
+AI engineer,nlp,6,0,6,2.8,No,LOW
+AI engineer,javascript,6,0,6,2.8,No,LOW
+AI engineer,postgresql,4,0,4,1.87,No,LOW
+AI engineer,sql server,4,0,4,1.87,No,LOW
+AI engineer,java,4,0,4,1.87,No,LOW
+AI engineer,presentation,4,0,4,1.87,No,LOW
+AI engineer,project management,4,0,4,1.87,No,LOW
+AI engineer,mathematics,3,0,3,1.4,No,LOW
+AI engineer,typescript,3,0,3,1.4,No,LOW
+AI engineer,problem solving,3,0,3,1.4,No,LOW
+AI engineer,database,3,0,3,1.4,No,LOW
+AI engineer,oracle,2,0,2,0.93,No,LOW
+AI engineer,data management,2,0,2,0.93,No,LOW
+AI engineer,etl,2,0,2,0.93,No,LOW
+AI engineer,dashboards,1,0,1,0.47,No,LOW
+AI engineer,hadoop,1,0,1,0.47,No,LOW
+AI engineer,forecasting,1,0,1,0.47,No,LOW
+AI engineer,apache spark,1,0,1,0.47,No,LOW
+AI engineer,business intelligence,1,0,1,0.47,No,LOW
+AI engineer,data modeling,1,0,1,0.47,No,LOW
+AI engineer,machine learning,22,22,0,10.28,Yes,ALREADY HAVE
+AI engineer,data science,14,14,0,6.54,Yes,ALREADY HAVE
+AI engineer,sql,11,11,0,5.14,Yes,ALREADY HAVE
+AI engineer,databases,10,10,0,4.67,Yes,ALREADY HAVE
+AI engineer,statistics,7,7,0,3.27,Yes,ALREADY HAVE
+AI engineer,pandas,5,5,0,2.34,Yes,ALREADY HAVE
+AI engineer,data analysis,4,4,0,1.87,Yes,ALREADY HAVE
+AI engineer,numpy,4,4,0,1.87,Yes,ALREADY HAVE
+AI engineer,mongodb,3,3,0,1.4,Yes,ALREADY HAVE
+AI engineer,mysql,3,3,0,1.4,Yes,ALREADY HAVE
+AI engineer,excel,2,2,0,0.93,Yes,ALREADY HAVE
+AI engineer,matplotlib,2,2,0,0.93,Yes,ALREADY HAVE
+AI engineer,c++,2,2,0,0.93,Yes,ALREADY HAVE
