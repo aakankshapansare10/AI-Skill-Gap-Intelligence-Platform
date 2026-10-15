@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 const RAW_API_URL =
-  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000/analyze-resume";
+  import.meta.env.VITE_API_URL || "/api/analyze-resume";
 const API_URL = RAW_API_URL.endsWith("/analyze-resume")
   ? RAW_API_URL
   : `${RAW_API_URL.replace(/\/+$/, "")}/analyze-resume`;

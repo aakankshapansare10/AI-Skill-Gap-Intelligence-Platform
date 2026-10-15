@@ -12,8 +12,10 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "axios": "^1.20.0",
+    "busboy": "^1.6.0",
     "framer-motion": "^14.0.0",
     "lucide-react": "^1.52.0",
+    "pdf-parse": "^2.4.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4",
